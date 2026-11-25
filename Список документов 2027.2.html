@@ -1,0 +1,1900 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Список документов для 3-НДФЛ · 13 копеек</title>
+<style>
+:root{
+  --paper:#f1ebdd; --paper2:#e5d9c0; --surface:#fffdf7; --surface2:#f8f2e3; --overlay:#fffefa;
+  --ink:#15242d; --ink2:#3f5560; --ink3:#77898f;
+  --line:#e3d7bd; --line2:#d3c2a0;
+  --brass:#b0642a; --brass2:#8d4d1b; --brass3:#e3ad7c; --gold:#d3a03c;
+  --teal:#146b64; --teal2:#0d504b;
+  --blue:#2a63a0; --green:#3a7a4a; --amber:#b07714; --red:#a83c33;
+  --hl:#ffe6bf; --hl-ink:#8a4a17;
+  --sh:0 22px 50px -26px rgba(45,32,12,.55); --shs:0 8px 20px -14px rgba(45,32,12,.5);
+  --r:18px; --rs:13px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{font-family:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--paper);line-height:1.58;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ---------- фон ---------- */
+.bg{position:fixed;inset:0;z-index:-2;overflow:hidden;
+  background:radial-gradient(1000px 700px at 86% -12%,rgba(211,160,60,.30),transparent 60%),
+             radial-gradient(880px 620px at -10% 18%,rgba(20,107,100,.20),transparent 60%),
+             radial-gradient(950px 780px at 44% 118%,rgba(176,100,42,.24),transparent 62%),
+             linear-gradient(158deg,#f7f1e2,#efe5cf 55%,#e9dec5)}
+.blob{position:absolute;border-radius:50%;filter:blur(66px);opacity:.42;mix-blend-mode:multiply;animation:drift 30s ease-in-out infinite}
+.b1{width:440px;height:440px;left:-140px;top:3%;background:radial-gradient(circle at 30% 30%,#e9b57a,#c4863c)}
+.b2{width:500px;height:500px;right:-160px;top:34%;background:radial-gradient(circle at 60% 40%,#82bab0,#2a7b73);animation-delay:-11s}
+.b3{width:400px;height:400px;left:34%;bottom:-180px;background:radial-gradient(circle,#ecc57e,#b0642a);animation-delay:-19s}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}34%{transform:translate(36px,-26px) scale(1.06)}67%{transform:translate(-26px,22px) scale(.94)}}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- полосы прокрутки ---------- */
+*{scrollbar-width:thin;scrollbar-color:var(--brass) var(--paper2)}
+*::-webkit-scrollbar{width:11px;height:11px}
+*::-webkit-scrollbar-track{background:var(--paper2);border-radius:20px}
+*::-webkit-scrollbar-thumb{background:linear-gradient(var(--brass),var(--brass2));border-radius:20px;border:3px solid var(--paper2)}
+*::-webkit-scrollbar-thumb:hover{background:linear-gradient(var(--gold),var(--brass))}
+
+/* ---------- шапка ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(255,253,247,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.hw{max-width:1000px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:13px}
+.coin{width:40px;height:40px;flex:0 0 auto;filter:drop-shadow(0 4px 8px rgba(141,77,27,.42))}
+.bt{display:flex;flex-direction:column;line-height:1.15}
+.bt b{font-family:"Playfair Display",Georgia,serif;font-size:1.02rem}
+.bt span{font-size:.67rem;color:var(--brass2);font-weight:800;text-transform:uppercase;letter-spacing:1.6px}
+.grow{flex:1}
+.step{font-size:.72rem;font-weight:800;color:var(--teal2);background:rgba(20,107,100,.12);border:1px solid rgba(20,107,100,.3);padding:5px 12px;border-radius:99px;white-space:nowrap}
+.hb{font:inherit;font-size:.8rem;font-weight:800;color:var(--brass2);background:transparent;border:1.5px solid var(--line2);padding:8px 14px;border-radius:99px;cursor:pointer;transition:.2s;white-space:nowrap;display:inline-flex;align-items:center;gap:7px}
+.hb:hover{border-color:var(--brass);background:rgba(176,100,42,.09);transform:translateY(-1px)}
+.hb svg{width:14px;height:14px}
+.pg{height:4px;background:var(--paper2)}
+.pg i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--gold),var(--brass));transition:width .55s cubic-bezier(.4,0,.2,1)}
+
+main{max-width:920px;margin:0 auto;padding:104px 20px 40px}
+.page{animation:up .46s cubic-bezier(.2,.7,.2,1) both}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:32px 34px;position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--teal),var(--gold) 45%,var(--brass))}
+
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.71rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--brass2);margin-bottom:12px}
+.eyebrow:before{content:"";width:24px;height:2px;background:var(--brass)}
+h1{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:clamp(1.6rem,3.6vw,2.35rem);line-height:1.14;letter-spacing:-.4px;margin-bottom:10px}
+h1 .ac{background:linear-gradient(100deg,var(--brass),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--ink2);font-size:.98rem;margin:12px 0}
+.sub{color:var(--ink2);font-size:.94rem;margin-bottom:18px}
+.sect{font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--brass2);margin:24px 0 12px;display:flex;align-items:center;gap:10px}
+.sect:after{content:"";flex:1;height:1px;background:var(--line)}
+.sect:first-of-type{margin-top:6px}
+mark{background:var(--hl);color:var(--hl-ink);font-weight:800;padding:1px 6px;border-radius:6px;box-shadow:inset 0 -2px 0 rgba(176,100,42,.3)}
+b,strong{font-weight:800}
+
+/* ---------- варианты ответа ---------- */
+.opt{position:relative;display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--rs);padding:14px 17px;margin-bottom:10px;cursor:pointer;transition:border-color .18s,transform .18s,box-shadow .18s,background .18s;animation:up .4s both}
+.opt:hover{border-color:var(--brass3);transform:translateX(3px);box-shadow:var(--shs)}
+.opt input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.opt .box{flex:0 0 auto;width:25px;height:25px;border-radius:8px;border:2px solid var(--line2);display:grid;place-items:center;margin-top:1px;transition:.18s;background:var(--surface)}
+.opt .box svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.4);transition:.18s}
+.opt .obody{flex:1;min-width:0}
+.opt .ot{display:block;font-weight:700;font-size:.97rem}
+.opt .od{display:block;font-size:.87rem;color:var(--ink2);margin-top:5px}
+.opt.is-on{border-color:var(--brass);background:linear-gradient(100deg,rgba(176,100,42,.07),rgba(211,160,60,.06))}
+.opt.is-on:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px;background:linear-gradient(var(--brass),var(--gold))}
+.opt.is-on .box{background:linear-gradient(135deg,var(--brass),var(--gold));border-color:var(--brass)}
+.opt.is-on .box svg{opacity:1;transform:scale(1)}
+.opt.is-off{opacity:.5;cursor:not-allowed;background:var(--surface2)}
+.opt.is-off:hover{transform:none;box-shadow:none;border-color:var(--line)}
+.opt:focus-within{outline:3px solid var(--teal);outline-offset:2px}
+.block{margin:6px 0 4px;padding:16px 18px;border:1px dashed var(--line2);border-radius:var(--rs);background:var(--surface2)}
+.block>.bt2{font-weight:800;font-size:.88rem;color:var(--teal2);margin-bottom:11px;display:block}
+.block .opt{background:var(--surface)}
+
+/* ---------- примечания ---------- */
+details{background:var(--surface2);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:var(--rs);padding:12px 16px;margin:12px 0;font-size:.9rem;color:var(--ink2)}
+details summary{cursor:pointer;font-weight:800;color:var(--brass2);list-style:none;display:flex;align-items:center;gap:9px}
+details summary::-webkit-details-marker{display:none}
+details summary:before{content:"+";display:grid;place-items:center;width:20px;height:20px;flex:0 0 auto;border-radius:6px;background:rgba(176,100,42,.14);color:var(--brass2);font-weight:800;line-height:1}
+details[open] summary:before{content:"−"}
+details[open] summary{margin-bottom:9px}
+details p{margin:7px 0}
+details p:first-of-type{margin-top:0}
+.note{background:var(--surface2);border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:var(--rs);padding:13px 16px;font-size:.9rem;color:var(--ink2);margin:14px 0}
+.note b{color:var(--ink)}
+
+/* ---------- кнопки ---------- */
+.btn{font:inherit;font-weight:800;font-size:.95rem;border:none;cursor:pointer;border-radius:99px;padding:13px 26px;transition:.2s;display:inline-flex;align-items:center;gap:9px;justify-content:center;text-decoration:none}
+.btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.btn.primary{color:#fff;background:linear-gradient(100deg,var(--brass2),var(--brass) 55%,var(--gold));box-shadow:0 12px 26px -13px rgba(141,77,27,.75)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 18px 32px -13px rgba(141,77,27,.85)}
+.btn.ghost{background:transparent;color:var(--ink2);border:1.5px solid var(--line2)}
+.btn.ghost:hover{border-color:var(--brass);color:var(--brass2);background:rgba(176,100,42,.06)}
+.btn.teal{background:linear-gradient(100deg,var(--teal2),var(--teal));color:#fff;box-shadow:0 12px 26px -13px rgba(13,80,75,.75)}
+.btn.teal:hover{transform:translateY(-2px)}
+.btn.big{width:100%;font-size:1.06rem;padding:18px 28px;margin-top:22px}
+.nav{display:flex;gap:10px;align-items:center;margin-top:26px;flex-wrap:wrap;padding-top:20px;border-top:1px dashed var(--line2)}
+.nav .grow{flex:1}
+.foot-link{margin-top:16px;font-size:.89rem;color:var(--ink3)}
+.ll{color:var(--teal2);font-weight:800;cursor:pointer;text-decoration:underline;text-decoration-color:rgba(20,107,100,.4);text-underline-offset:3px;background:none;border:none;font:inherit;padding:0}
+.ll:hover{color:var(--brass2)}
+
+/* ---------- вступление ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0}
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:.84rem;font-weight:700;color:var(--teal2);text-decoration:none;background:rgba(20,107,100,.08);border:1.5px solid rgba(20,107,100,.26);padding:8px 14px;border-radius:99px;transition:.2s;cursor:pointer;font-family:inherit}
+.chip:hover{background:rgba(20,107,100,.17);transform:translateY(-2px);box-shadow:var(--shs)}
+.chip.w{color:var(--brass2);background:rgba(176,100,42,.08);border-color:rgba(176,100,42,.3)}
+.chip.w:hover{background:rgba(176,100,42,.17)}
+.chip svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:22px 0}
+.fact{background:var(--surface2);border:1px solid var(--line);border-radius:var(--rs);padding:15px 17px}
+.fact b{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.5rem;color:var(--brass2);line-height:1.1}
+.fact span{display:block;font-size:.83rem;color:var(--ink2);margin-top:5px}
+.auth{margin-top:22px;padding-top:16px;border-top:1px dashed var(--line2);font-size:.87rem;color:var(--ink3)}
+.auth b{color:var(--ink2)}
+
+/* ---------- итог ---------- */
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:.84rem;font-weight:800;color:var(--teal2);background:rgba(20,107,100,.12);border:1px solid rgba(20,107,100,.3);padding:7px 15px;border-radius:99px}
+.badge b{background:var(--teal2);color:#fff;border-radius:99px;padding:1px 9px;font-size:.82rem}
+.doclist{list-style:none;counter-reset:d;margin:18px 0 0;padding:0}
+.doclist li{counter-increment:d;position:relative;padding:14px 16px 14px 56px;border:1px solid var(--line);border-radius:var(--rs);margin-bottom:8px;background:var(--surface);transition:.15s;break-inside:avoid}
+.doclist li:hover{border-color:var(--brass3);box-shadow:var(--shs)}
+.doclist li:before{content:counter(d);position:absolute;left:14px;top:13px;width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,rgba(176,100,42,.16),rgba(211,160,60,.2));color:var(--brass2);font-size:.83rem;font-weight:800;display:grid;place-items:center}
+.doclist .dt{font-weight:700;font-size:.95rem;display:block}
+.doclist details{margin:9px 0 0;font-size:.86rem;padding:9px 13px}
+.acts{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0 4px}
+.empty{text-align:center;padding:26px 14px}
+.empty svg{width:70px;height:70px;color:var(--line2);margin-bottom:14px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:3 2.4}
+.dbg{margin-top:22px;border-left-color:var(--blue);font-size:.85rem}
+.dbg summary{color:var(--blue)}
+.dbg table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.8rem}
+.dbg th{text-align:left;padding:7px 8px;background:rgba(42,99,160,.09);color:#1f4f80;border-bottom:2px solid rgba(42,99,160,.25);font-weight:800}
+.dbg td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.dbg code{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.74rem;background:rgba(42,99,160,.1);color:#1f4f80;padding:1px 5px;border-radius:4px}
+.dbg .sl{color:var(--ink3);font-style:italic}
+
+/* ---------- контакты ---------- */
+.ct{display:flex;align-items:center;gap:14px;padding:15px;border:1px solid var(--line);border-radius:var(--rs);margin-bottom:11px;text-decoration:none;color:var(--ink);transition:.18s;background:var(--surface)}
+.ct:hover{border-color:var(--brass);transform:translateX(3px);box-shadow:var(--shs)}
+.ci{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;flex:0 0 auto;background:linear-gradient(135deg,var(--brass),var(--gold));color:#fff}
+.ci svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ct b{display:block}
+.ct span{font-size:.84rem;color:var(--ink3)}
+
+footer{max-width:920px;margin:0 auto;padding:0 20px 36px;text-align:center;font-size:.8rem;color:var(--ink3)}
+
+/* ---------- модальное предупреждение ---------- */
+.scrim{position:fixed;inset:0;background:rgba(21,36,45,.46);backdrop-filter:blur(3px);z-index:90;opacity:0;pointer-events:none;transition:.25s}
+.scrim.on{opacity:1;pointer-events:auto}
+.modal{position:fixed;z-index:100;left:50%;top:50%;transform:translate(-50%,-46%) scale(.96);width:min(520px,calc(100% - 32px));background:var(--overlay);border:1px solid var(--line2);border-radius:var(--r);box-shadow:var(--sh);padding:26px 28px;opacity:0;pointer-events:none;transition:.28s cubic-bezier(.2,.8,.3,1)}
+.modal.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+.modal .mi{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:rgba(176,119,20,.14);color:var(--amber);margin-bottom:14px}
+.modal .mi svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.modal h3{font-family:"Playfair Display",Georgia,serif;font-size:1.22rem;margin-bottom:8px}
+.modal p{color:var(--ink2);font-size:.94rem}
+.modal .btn{margin-top:20px;width:100%}
+
+/* ---------- уведомление ---------- */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);z-index:120;background:var(--ink);color:#fff;padding:12px 22px;border-radius:99px;font-weight:700;font-size:.9rem;box-shadow:var(--sh);opacity:0;transition:.35s cubic-bezier(.2,.8,.2,1);display:flex;gap:8px;align-items:center}
+.toast.on{transform:translateX(-50%) translateY(0);opacity:1}
+.toast svg{width:16px;height:16px;fill:none;stroke:var(--gold);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+
+@media(max-width:640px){
+  .hw{padding:9px 13px;gap:9px}.bt b{font-size:.9rem}.bt span{display:none}
+  .hb span{display:none}.hb{padding:8px 10px}
+  main{padding:88px 13px 32px}.card{padding:22px 18px}
+  .nav .btn{flex:1 1 auto}.nav .grow{display:none}
+  .opt{padding:13px 14px}
+  .doclist li{padding-left:50px}
+}
+@media print{
+  header,.bg,.grain,.nav,.acts,.dbg,footer,.toast,.modal,.scrim,.foot-link{display:none!important}
+  body{background:#fff}
+  main{padding:0;max-width:100%}
+  .page:not(#itog){display:none!important}
+  .card{box-shadow:none;border:none;padding:0;background:#fff}
+  .card:before{display:none}
+  .doclist li{border-color:#bbb}
+  .doclist details{border:none;padding:0;background:none}
+  .doclist details summary{display:none}
+  .doclist details p{display:block!important;font-size:.82rem;color:#333}
+}
+</style>
+</head>
+<body>
+
+<div class="bg"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<div class="grain"></div>
+
+<header>
+  <div class="hw">
+    <svg class="coin" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ecc57e"/><stop offset=".5" stop-color="#d3a03c"/><stop offset="1" stop-color="#8d4d1b"/></linearGradient></defs><circle cx="24" cy="24" r="22" fill="url(#cg)" stroke="#7a3f16" stroke-width="1.5"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.4"/><text x="24" y="29.5" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-weight="800" font-size="16" fill="#59300f">13</text></svg>
+    <div class="bt"><b>13 копеек</b><span>3-НДФЛ · документы</span></div>
+    <div class="grow"></div>
+    <span class="step" id="stepLabel">Начало</span>
+    <button class="hb" onclick="zanovo()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span>Заново</span></button>
+  </div>
+  <div class="pg"><i id="pbar"></i></div>
+</header>
+
+<main>
+
+<!-- ═══════════ ВСТУПЛЕНИЕ ═══════════ -->
+<div id="start" class="page">
+  <div class="card">
+    <div class="eyebrow">Подбор документов · 2023–2026</div>
+    <h1>Список документов <span class="ac">для декларации 3-НДФЛ</span></h1>
+    <p class="lead">Ответьте на несколько вопросов — программа соберёт список документов, которые нужно приложить к декларации, а также тех, которые понадобятся для её заполнения.</p>
+    <div class="facts">
+      <div class="fact"><b>Версия</b><span>2027.1 (от 25.11.2026)</span></div>
+      <div class="fact"><b>Для следующих налоговых периодов</b><span>2023, 2024, 2025, 2026 — с учётом изменений</span></div>
+      <div class="fact"><b>0 ₽</b><span>подбор списка бесплатный и без регистрации</span></div>
+    </div>
+    <div class="note"><b>Про годы.</b> Социальные вычеты оформляются за 2024–2026 годы. За 2023 год можно заявить имущественные вычеты, в том числе перенос остатка пенсионерами на предыдущие периоды.</div>
+    <p class="lead">Программа <b>не</b> составляет список документов для предпринимателей по их предпринимательской деятельности.</p>
+    <div class="chips">
+      <a class="chip" href="https://3-ndfl-nn.1c-umi.ru/dokumenty_dlya_3-ndfl_poryadok_polucheniya_vycheta/blanki_3-ndfl_i_programmy/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></svg> Бланки и программы</a>
+      <a class="chip" href="https://rutube.ru/channel/34643176/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></svg> Видео по заполнению 3-НДФЛ</a>
+      <a class="chip" href="https://vk.com/3ndflnn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></svg> Группа ВКонтакте</a>
+      <a class="chip w" href="http://ndfl13y.tilda.ws/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></svg> Надо ли сдавать: недвижимость</a>
+      <a class="chip w" href="http://avto3-ndfl.tilda.ws/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></svg> Надо ли сдавать: транспорт</a>
+    </div>
+    <button class="btn primary big" onclick="nachat()">Начать подбор документов <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <div class="auth">Автор программы — <b>Андрей Дементьев («13 копеек»)</b>. Программа предназначена для бесплатного использования.</div>
+    <div class="foot-link">Нестандартная ситуация? <button class="ll" onclick="konsultaciya()">Обратитесь за консультацией</button>.</div>
+  </div>
+</div>
+
+<!-- ═══════════ СТРАНИЦА 1 ═══════════ -->
+<div id="page1" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Шаг 1 · основания</div>
+    <h1>Что будет записано в декларации?</h1>
+    <p class="sub">Можно выбрать несколько оснований одновременно.</p>
+    <label class="opt"><input type="checkbox" id="imu" onclick="kontrolPervoy(this)"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Имущественные вычеты при покупке жилья</span><span class="od">Покупка или строительство жилья, а также проценты по ипотеке.</span></span></label>
+    <label class="opt"><input type="checkbox" id="soc" onclick="kontrolPervoy(this)"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Прочие вычеты</span><span class="od">Обучение, лечение, лекарства, страхование, пенсионные взносы, инвестиции, физкультурные услуги, стандартные вычеты за детей и по статусу.</span></span></label>
+    <label class="opt"><input type="checkbox" id="pro" onclick="kontrolPervoy(this)"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Отчитаться о доходах</span><span class="od">Продажа недвижимости, транспорта, ценных бумаг вне организованного рынка, иного имущества, выигрыши, подарки, изъятие имущества.</span></span></label>
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn primary" onclick="dalee()">Далее <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="foot-link">Ни один вариант не подходит? <button class="ll" onclick="konsultaciya()">Обратитесь за консультацией</button>.</div>
+  </div>
+</div>
+
+<!-- ═══════════ СТРАНИЦА 2 ═══════════ -->
+<div id="page2" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Имущественный вычет</div>
+    <h1>Какие объекты были приобретены</h1>
+    <details><summary>Примечание</summary><p>Укажите в том числе те объекты, по которым уже получали вычет ранее (в декларациях за другие годы) или по которым получаете только вычет по процентам.</p></details>
+    <div id="obekty">
+      <label class="opt"><input type="checkbox" id="kvar"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Вторичное жильё: квартира или комната</span></span></label>
+      <label class="opt"><input type="checkbox" id="dom_uch"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Вторичное жильё: дом с участком</span></span></label>
+      <label class="opt"><input type="checkbox" id="str_uch_kup"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дом построен на личном участке (участок куплен)</span></span></label>
+      <label class="opt"><input type="checkbox" id="str_uch_bez"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дом построен на личном участке (участок получен безвозмездно)</span></span></label>
+      <label class="opt"><input type="checkbox" id="str_ddu"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Строительство квартиры или комнаты в многоквартирном доме</span></span></label>
+    </div>
+    <div class="sect">Кредит и остаток вычета</div>
+    <label class="opt"><input type="checkbox" id="kredit"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">На приобретение любого из объектов использован целевой кредит</span></span></label>
+    <label class="opt"><input type="checkbox" id="prots" onclick="kredit()"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">В декларацию будут записаны проценты по кредиту</span><span class="od">По какому-либо из объектов.</span></span></label>
+    <label class="opt"><input type="checkbox" id="ranee"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Уже получали имущественный вычет ранее</span><span class="od">Через работодателя, в упрощённом порядке или в декларациях за другие годы.</span></span></label>
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn ghost" onclick="konsultaciya()">Консультация</button>
+      <button class="btn primary" onclick="dalee()">Далее <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ СТРАНИЦА 3 ═══════════ -->
+<div id="page3" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Имущественный вычет</div>
+    <h1>Дополнительные сведения</h1>
+    <p class="sub">Отметьте всё, что относится к вашей ситуации.</p>
+    <label class="opt"><input type="checkbox" id="pens"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Являетесь пенсионером</span><span class="od">Даёт право перенести остаток вычета на предыдущие годы.</span></span></label>
+    <label class="opt"><input type="checkbox" id="dolya_detey"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Вычет получаете за долю в собственности детей</span></span></label>
+    <label class="opt"><input type="checkbox" id="dolya_podopechnyh"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Вычет получаете за долю в собственности подопечных</span></span></label>
+    <label class="opt"><input type="checkbox" id="brak"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Состояли в браке на дату приобретения любого из объектов</span></span></label>
+    <div id="vpervye" class="block" hidden>
+      <label class="opt"><input type="checkbox" id="procenty_vpervye"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Проценты по кредиту записываю в декларацию впервые</span></span></label>
+    </div>
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn ghost" onclick="konsultaciya()">Консультация</button>
+      <button class="btn primary" onclick="dalee()">Далее <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ СТРАНИЦА 4 ═══════════ -->
+<div id="page4" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Имущественный вычет</div>
+    <h1>Использование субсидий</h1>
+    <p class="lead">К субсидиям относится любая оплата жилья за счёт государства, в том числе материнский капитал. Вычет на сумму, оплаченную государством, не предоставляется.</p>
+    <p class="sub">Так как субсидии могли быть выплачены частями, можно отметить несколько вариантов. Если субсидий не было — просто нажмите «Далее».</p>
+    <div class="sect">Материнский капитал и другие субсидии перечислены</div>
+    <label class="opt"><input type="checkbox" id="sub_prod_tek"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">ПРОДАВЦУ — записаны в текущей декларации</span><span class="od">В том числе на оплату первоначального взноса при покупке в кредит.</span></span></label>
+    <div id="blok_prod_pred" hidden>
+      <label class="opt"><input type="checkbox" id="sub_prod_pred"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">ПРОДАВЦУ — записаны в предыдущих декларациях</span></span></label>
+    </div>
+    <div id="blok_bank_tek" hidden>
+      <label class="opt"><input type="checkbox" id="sub_bank_tek"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">БАНКУ (займодателю) — записаны в текущей декларации</span></span></label>
+      <details><summary>Примечание: материнский капитал больше остатка вычета</summary>
+        <p>Если материнский капитал перечислен банку на погашение кредита и учитывается в текущей декларации, бывает ситуация, когда сумма капитала больше остатка вычета.</p>
+        <p>Есть мнения Минфина, что налоги, возвращённые в предыдущие годы, должны быть возвращены государству с уплатой пени.</p>
+        <p>По этой причине не рекомендуем сдавать декларацию, если остаток имущественного вычета меньше суммы выплаченного материнского капитала. Позднее, когда будет приобретено другое жильё или банку будут выплачены проценты сверх материнского капитала, можно добавить расходы на новый объект или заменить основной вычет на вычет по процентам.</p>
+      </details>
+    </div>
+    <div id="blok_bank_pred" hidden>
+      <label class="opt"><input type="checkbox" id="sub_bank_pred"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">БАНКУ (займодателю) — записаны в предыдущих декларациях</span></span></label>
+    </div>
+    <div class="sect">Военная ипотека</div>
+    <label class="opt"><input type="checkbox" id="nis"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Использованы субсидии накопительно-ипотечной системы военнослужащих</span></span></label>
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn ghost" onclick="konsultaciya()">Консультация</button>
+      <button class="btn primary" onclick="dalee()">Далее <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ СТРАНИЦА 5 ═══════════ -->
+<div id="page5" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Имущественный вычет</div>
+    <h1>Оплата приобретения жилья</h1>
+    <p class="sub">Укажите виды оплаты, которые применялись при приобретении недвижимости (кроме строительства на личном земельном участке). Можно выбрать несколько — например, задаток наличными, остальное со счёта.</p>
+    <label class="opt"><input type="checkbox" id="nal"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">НАЛИЧНЫМИ</span><span class="od">В том числе с использованием сейфовых ячеек и других способов временного хранения денег.</span></span></label>
+    <label class="opt"><input type="checkbox" id="beznal"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">БЕЗНАЛИЧНЫМИ</span><span class="od">Перечисление продавцу напрямую со счёта, без дополнительных условий получения денег.</span></span></label>
+    <div id="blok_gos_fond" hidden>
+      <label class="opt"><input type="checkbox" id="gos_fond"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">ОТ ГОСУДАРСТВЕННОГО ФОНДА</span><span class="od">Перечисление со счёта социального (пенсионного) фонда или другой государственной организации.</span></span></label>
+    </div>
+    <label class="opt"><input type="checkbox" id="akkreditiv"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">АККРЕДИТИВ</span></span></label>
+    <label class="opt"><input type="checkbox" id="posrednik"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">ЧЕРЕЗ ПОСРЕДНИКА</span><span class="od">Деньги перечисляются продавцу через третье лицо, в том числе зависимые организации банков.</span></span></label>
+    <div id="blok_eskrou" hidden>
+      <label class="opt"><input type="checkbox" id="eskrou"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">ЭСКРОУ</span></span></label>
+    </div>
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn ghost" onclick="konsultaciya()">Консультация</button>
+      <button class="btn primary" onclick="dalee()">Далее <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ СТРАНИЦА 6 ═══════════ -->
+<div id="page6" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Имущественный вычет</div>
+    <h1>Прочие сведения</h1>
+    <label class="opt"><input type="checkbox" id="pasport"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">БЫЛИ ИЗМЕНЕНИЯ ПАСПОРТНЫХ ДАННЫХ</span><span class="od">Паспортные данные в декларации отличаются от указанных в прилагаемых документах, либо изменились после предыдущей декларации.</span></span></label>
+    <label class="opt"><input type="checkbox" id="vozvrat"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">В ДЕКЛАРАЦИИ БУДЕТ ЗАЯВЛЕН НАЛОГ К ВОЗВРАТУ</span><span class="od">Нет взаимозачёта по другим налогам — излишне удержанный налог должен вернуться на ваш банковский счёт.</span></span></label>
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn ghost" onclick="konsultaciya()">Консультация</button>
+      <button class="btn primary" onclick="dalee()">Далее <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ СТРАНИЦА 7 ═══════════ -->
+<div id="page7" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Прочие вычеты</div>
+    <h1>Какие вычеты будут записаны в декларацию</h1>
+    <div class="sect">Вычеты с возможностью оплаты за других людей</div>
+    <div id="soc_rashody">
+      <label class="opt"><input type="checkbox" id="obuch_ochno" onclick="proveritRodnyh()"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Обучение очное</span></span></label>
+      <label class="opt"><input type="checkbox" id="medic_uslugi" onclick="proveritRodnyh()"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Медицинские услуги</span></span></label>
+      <label class="opt"><input type="checkbox" id="fizkultura" onclick="proveritRodnyh()"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Физкультурные услуги</span></span></label>
+      <label class="opt"><input type="checkbox" id="strah_zhizni" onclick="proveritRodnyh()"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Добровольное страхование жизни</span><span class="od">В том числе если оплата взносов произведена работодателем.</span></span></label>
+      <label class="opt"><input type="checkbox" id="dms" onclick="proveritRodnyh()"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Добровольное медицинское страхование</span></span></label>
+      <label class="opt"><input type="checkbox" id="lekarstva" onclick="proveritRodnyh()"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Покупка медикаментов</span></span></label>
+      <label class="opt"><input type="checkbox" id="pds" onclick="proveritRodnyh()"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Пенсионное обеспечение (долгосрочные сбережения)</span><span class="od">В том числе если оплата взносов произведена работодателем.</span></span></label>
+      <label class="opt"><input type="checkbox" id="pens_strah" onclick="proveritRodnyh()"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Пенсионное страхование</span></span></label>
+    </div>
+    <label class="opt"><input type="checkbox" id="za_rodnyh" disabled><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Вышеназванные расходы произведены за кого-либо из родственников</span><span class="od">Станет доступно после выбора хотя бы одного вида расходов выше.</span></span></label>
+
+    <div class="sect">Прочие вычеты</div>
+    <label class="opt"><input type="checkbox" id="obuch_neochno"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Обучение НЕ очное</span></span></label>
+    <label class="opt"><input type="checkbox" id="blagotvor"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Благотворительность</span></span></label>
+    <label class="opt"><input type="checkbox" id="dop_pens_vznosy"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дополнительные пенсионные взносы</span></span></label>
+    <label class="opt"><input type="checkbox" id="iis_do2023"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Инвестиционный счёт, открытый до 31.12.2023 включительно</span><span class="od">Если НЕ подавали заявление о переходе на вычет по долгосрочным сбережениям.</span></span></label>
+    <label class="opt"><input type="checkbox" id="iis_posle2023"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Инвестиционные счета, открытые после 31.12.2023</span></span></label>
+    <label class="opt"><input type="checkbox" id="cennye_bumagi"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Покупка ценных бумаг на НЕ инвестиционном брокерском счёте</span></span></label>
+
+    <div class="sect">Стандартные вычеты</div>
+    <label class="opt"><input type="checkbox" id="std_deti"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Вычет за наличие детей</span><span class="od">В том числе за детей супруги (супруга).</span></span></label>
+    <label class="opt"><input type="checkbox" id="std_podopechnye"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Вычет за наличие подопечных</span></span></label>
+    <label class="opt"><input type="checkbox" id="std_invalidy"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Вычеты инвалидам, ветеранам, чернобыльцам, героям</span></span></label>
+
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn ghost" onclick="konsultaciya()">Консультация</button>
+      <button class="btn primary" onclick="dalee()">Далее <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="foot-link">Ваших вычетов нет в списке? <button class="ll" onclick="konsultaciya()">Обратитесь за консультацией</button>.</div>
+  </div>
+</div>
+
+<!-- ═══════════ СТРАНИЦА 8 ═══════════ -->
+<div id="page8" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Прочие вычеты</div>
+    <h1>Кто был получателем услуг</h1>
+    <p class="sub">Показаны только те виды расходов, которые вы выбрали на предыдущем шаге.</p>
+
+    <div id="grp_ochno" class="block" hidden>
+      <span class="bt2">Очное обучение</span>
+      <label class="opt"><input type="checkbox" id="ochno_sam"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Сам плательщик</span></span></label>
+      <label class="opt"><input type="checkbox" id="ochno_deti18"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети младше 18 лет</span></span></label>
+      <label class="opt"><input type="checkbox" id="ochno_deti23"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети 18–23 года включительно</span></span></label>
+      <label class="opt"><input type="checkbox" id="ochno_podop18"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Подопечные младше 18 лет</span></span></label>
+      <label class="opt"><input type="checkbox" id="ochno_podop23"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Бывшие подопечные 18–23 года включительно</span></span></label>
+      <label class="opt"><input type="checkbox" id="ochno_brat24"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Брат или сестра младше 24 лет</span></span></label>
+      <label class="opt"><input type="checkbox" id="ochno_suprug"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Супруга (супруг)</span></span></label>
+    </div>
+
+    <div id="grp_med" class="block" hidden>
+      <span class="bt2">Медицинские услуги</span>
+      <label class="opt"><input type="checkbox" id="med_sam"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Сам плательщик</span></span></label>
+      <label class="opt"><input type="checkbox" id="med_deti18"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети младше 18 лет</span></span></label>
+      <label class="opt"><input type="checkbox" id="med_deti23"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети 18–23 года, учащиеся очно</span></span></label>
+      <label class="opt"><input type="checkbox" id="med_deti_nedee"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети 18 лет и старше, недееспособные</span></span></label>
+      <label class="opt"><input type="checkbox" id="med_podop18"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Подопечные младше 18 лет</span></span></label>
+      <label class="opt"><input type="checkbox" id="med_podop23"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Бывшие подопечные 18–23 года, учащиеся очно</span></span></label>
+      <label class="opt"><input type="checkbox" id="med_podop_nedee"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Подопечные 18 лет и старше, недееспособные</span></span></label>
+      <label class="opt"><input type="checkbox" id="med_suprug"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Супруга (супруг)</span></span></label>
+      <label class="opt"><input type="checkbox" id="med_roditeli"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Родители</span></span></label>
+    </div>
+
+    <div id="grp_fiz" class="block" hidden>
+      <span class="bt2">Физкультурно-оздоровительные услуги</span>
+      <label class="opt"><input type="checkbox" id="fiz_sam"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Сам плательщик</span></span></label>
+      <label class="opt"><input type="checkbox" id="fiz_deti18"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети младше 18 лет</span></span></label>
+      <label class="opt"><input type="checkbox" id="fiz_deti23"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети 18–23 года, учащиеся очно</span></span></label>
+      <label class="opt"><input type="checkbox" id="fiz_podop18"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Подопечные младше 18 лет</span></span></label>
+      <label class="opt"><input type="checkbox" id="fiz_podop23"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Бывшие подопечные 18–23 года, учащиеся очно</span></span></label>
+      <label class="opt"><input type="checkbox" id="fiz_roditeli_pens"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Родители-пенсионеры</span><span class="od">Только с 2026 года.</span></span></label>
+    </div>
+
+    <div id="grp_zhizn" class="block" hidden>
+      <span class="bt2">Страхование жизни</span>
+      <label class="opt"><input type="checkbox" id="zhizn_sam"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Сам плательщик</span></span></label>
+      <label class="opt"><input type="checkbox" id="zhizn_deti_any"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети (независимо от возраста)</span></span></label>
+      <label class="opt"><input type="checkbox" id="zhizn_podop_deti_inv"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Подопечные со статусом детей-инвалидов</span><span class="od">Только с 2025 года.</span></span></label>
+      <label class="opt"><input type="checkbox" id="zhizn_brat_any"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Брат или сестра (независимо от возраста)</span><span class="od">Только с 2025 года.</span></span></label>
+      <label class="opt"><input type="checkbox" id="zhizn_suprug"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Супруга (супруг)</span></span></label>
+      <label class="opt"><input type="checkbox" id="zhizn_roditeli"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Родители</span></span></label>
+      <label class="opt"><input type="checkbox" id="zhizn_babushka"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Бабушка или дедушка</span><span class="od">Только с 2025 года.</span></span></label>
+      <label class="opt"><input type="checkbox" id="zhizn_vnuki"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Внуки</span><span class="od">Только с 2025 года.</span></span></label>
+    </div>
+
+    <div id="grp_dms" class="block" hidden>
+      <span class="bt2">Медицинское страхование</span>
+      <label class="opt"><input type="checkbox" id="dms_sam"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Сам плательщик</span></span></label>
+      <label class="opt"><input type="checkbox" id="dms_deti18"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети младше 18 лет</span></span></label>
+      <label class="opt"><input type="checkbox" id="dms_deti23"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети 18–23 года, учащиеся очно</span></span></label>
+      <label class="opt"><input type="checkbox" id="dms_podop18"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Подопечные младше 18 лет</span></span></label>
+      <label class="opt"><input type="checkbox" id="dms_podop23"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Бывшие подопечные 18–23 года, учащиеся очно</span></span></label>
+      <label class="opt"><input type="checkbox" id="dms_suprug"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Супруга (супруг)</span></span></label>
+      <label class="opt"><input type="checkbox" id="dms_roditeli"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Родители</span></span></label>
+    </div>
+
+    <div id="grp_lekar" class="block" hidden>
+      <span class="bt2">Покупка медицинских препаратов</span>
+      <label class="opt"><input type="checkbox" id="lekar_sam"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Сам плательщик</span></span></label>
+      <label class="opt"><input type="checkbox" id="lekar_deti18"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети младше 18 лет</span></span></label>
+      <label class="opt"><input type="checkbox" id="lekar_deti23"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети 18–23 года, учащиеся очно</span></span></label>
+      <label class="opt"><input type="checkbox" id="lekar_deti_nedee"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети 18 лет и старше, недееспособные</span></span></label>
+      <label class="opt"><input type="checkbox" id="lekar_podop18"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Подопечные младше 18 лет</span></span></label>
+      <label class="opt"><input type="checkbox" id="lekar_podop23"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Бывшие подопечные 18–23 года, учащиеся очно</span></span></label>
+      <label class="opt"><input type="checkbox" id="lekar_podop_nedee"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Подопечные 18 лет и старше, недееспособные</span></span></label>
+      <label class="opt"><input type="checkbox" id="lekar_suprug"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Супруга (супруг)</span></span></label>
+      <label class="opt"><input type="checkbox" id="lekar_roditeli"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Родители</span></span></label>
+    </div>
+
+    <div id="grp_pds" class="block" hidden>
+      <span class="bt2">Пенсионное обеспечение (долгосрочные сбережения)</span>
+      <label class="opt"><input type="checkbox" id="pds_sam"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Сам плательщик</span></span></label>
+      <label class="opt"><input type="checkbox" id="pds_deti_any"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети (независимо от возраста)</span></span></label>
+      <label class="opt"><input type="checkbox" id="pds_podop_deti_inv"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Подопечные со статусом детей-инвалидов</span></span></label>
+      <label class="opt"><input type="checkbox" id="pds_brat_any"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Брат или сестра (независимо от возраста)</span></span></label>
+      <label class="opt"><input type="checkbox" id="pds_suprug"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Супруга (супруг)</span></span></label>
+      <label class="opt"><input type="checkbox" id="pds_roditeli"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Родители</span></span></label>
+      <label class="opt"><input type="checkbox" id="pds_babushka"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Бабушка или дедушка</span></span></label>
+      <label class="opt"><input type="checkbox" id="pds_vnuki"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Внуки</span></span></label>
+    </div>
+
+    <div id="grp_pensstr" class="block" hidden>
+      <span class="bt2">Пенсионное страхование</span>
+      <label class="opt"><input type="checkbox" id="pensstr_sam"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Сам плательщик</span></span></label>
+      <label class="opt"><input type="checkbox" id="pensstr_deti_inv"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дети-инвалиды</span><span class="od">В законе не уточнено, идёт ли речь о статусе «ребёнок-инвалид» или об инвалидности в любом возрасте.</span></span></label>
+      <label class="opt"><input type="checkbox" id="pensstr_podop_inv"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Подопечные-инвалиды</span><span class="od">Формулировка закона также не содержит уточнений по возрасту и статусу.</span></span></label>
+      <label class="opt"><input type="checkbox" id="pensstr_suprug"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Супруга (супруг)</span></span></label>
+      <label class="opt"><input type="checkbox" id="pensstr_roditeli"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Родители</span></span></label>
+    </div>
+
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn ghost" onclick="konsultaciya()">Консультация</button>
+      <button class="btn primary" onclick="dalee()">Далее <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ СТРАНИЦА 9 ═══════════ -->
+<div id="page9" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Прочие вычеты</div>
+    <h1>Дополнительные сведения по вычетам</h1>
+    <p class="sub">В каждом показанном блоке нужно отметить хотя бы один вариант.</p>
+
+    <div id="blok_obuch" class="block" hidden>
+      <span class="bt2">Обучение было</span>
+      <label class="opt"><input type="checkbox" id="obuch_rf"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">В России</span></span></label>
+      <label class="opt"><input type="checkbox" id="obuch_inostr"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">В иностранной организации</span></span></label>
+    </div>
+
+    <div id="blok_lekar" class="block" hidden>
+      <span class="bt2">Покупка препаратов была</span>
+      <label class="opt"><input type="checkbox" id="lekar_stacionar"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">При оказании медуслуг в стационаре</span></span></label>
+      <label class="opt"><input type="checkbox" id="lekar_recept"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">По рецепту врача, не в стационаре</span></span></label>
+    </div>
+
+    <div id="blok_blago" class="block" hidden>
+      <span class="bt2">Благотворительность</span>
+      <label class="opt"><input type="checkbox" id="blago_vozvrat"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Были возвраты пожертвования</span></span></label>
+    </div>
+
+    <div id="blok_pds" class="block" hidden>
+      <span class="bt2">Взносы по пенсионному обеспечению (долгосрочные сбережения) перечислены</span>
+      <label class="opt"><input type="checkbox" id="pds_rabotodatel"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Работодателем</span><span class="od">В том числе удержаны из зарплаты.</span></span></label>
+      <label class="opt"><input type="checkbox" id="pds_lichno"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Лично налогоплательщиком</span></span></label>
+    </div>
+
+    <div id="blok_pensstr" class="block" hidden>
+      <span class="bt2">Взносы по пенсионному страхованию уплачены</span>
+      <label class="opt"><input type="checkbox" id="pensstr_rabotodatel"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Работодателем</span><span class="od">В том числе удержаны из зарплаты.</span></span></label>
+      <label class="opt"><input type="checkbox" id="pensstr_lichno"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Лично налогоплательщиком</span></span></label>
+    </div>
+
+    <div id="blok_iis_do2023" class="block" hidden>
+      <span class="bt2">Инвестиционный счёт, открытый до 31.12.2023 включительно</span>
+      <label class="opt"><input type="checkbox" id="iis_do2023_vznosy"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Используется вычет в размере внесённых на счёт средств</span><span class="od">НЕ ставьте галочку, если используется вычет в размере прибыли, полученной на инвестиционном счёте.</span></span></label>
+    </div>
+
+    <div id="blok_broker" class="block" hidden>
+      <span class="bt2">Вычет по брокерскому (НЕ инвестиционному) счёту</span>
+      <label class="opt"><input type="checkbox" id="broker_pribyl3"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Вычет по прибыли от продажи бумаг в собственности 3 года</span></span></label>
+      <label class="opt"><input type="checkbox" id="broker_ubytki10"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Вычет в размере убытка за предыдущие 10 лет</span></span></label>
+    </div>
+
+    <div id="blok_std_deti" class="block" hidden>
+      <span class="bt2">Льготы и особенности вычета на детей (усыновлённых, подопечных)</span>
+      <label class="opt"><input type="checkbox" id="std_ediny"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Единственный родитель, опекун, попечитель</span></span></label>
+      <label class="opt"><input type="checkbox" id="std_otkaz"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Отказ второго родителя от вычета</span></span></label>
+
+      <!-- ПРАВКА 1: блок виден только при отмеченной галочке «Вычет за наличие детей» -->
+      <div id="blok9_deti" hidden>
+        <label class="opt"><input type="checkbox" id="std_deti23"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Совершеннолетние дети 18–23 лет, учащиеся очно</span></span></label>
+        <label class="opt"><input type="checkbox" id="std_deti_inv"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Наличие у детей инвалидности</span></span></label>
+      </div>
+
+      <!-- ПРАВКА 1: блок виден только при отмеченной галочке «Вычет за наличие подопечных» -->
+      <div id="blok9_podop" hidden>
+        <label class="opt"><input type="checkbox" id="std_podop_inv23"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Инвалидность у совершеннолетних подопечных 18–23 лет, учащихся очно</span></span></label>
+      </div>
+
+      <label class="opt"><input type="checkbox" id="std_nedee"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Ребёнок (подопечный) признан судом недееспособным</span></span></label>
+      <label class="opt"><input type="checkbox" id="std_deti_suprug"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Получение вычета за детей супруги (супруга)</span></span></label>
+    </div>
+
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn ghost" onclick="konsultaciya()">Консультация</button>
+      <button class="btn primary" onclick="dalee()">Далее <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ СТРАНИЦА 10 ═══════════ -->
+<div id="page10" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Прочие вычеты</div>
+    <h1>Паспортные данные и возврат</h1>
+    <label class="opt"><input type="checkbox" id="pasport10"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">БЫЛИ ИЗМЕНЕНИЯ ПАСПОРТНЫХ ДАННЫХ ПОСЛЕ ЗАКЛЮЧЕНИЯ ДОГОВОРОВ</span><span class="od">В договорах или платёжных документах указаны данные предыдущего паспорта.</span></span></label>
+    <label class="opt"><input type="checkbox" id="vozvrat10"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">В ДЕКЛАРАЦИИ ЗАЯВЛЕН НАЛОГ К ВОЗВРАТУ</span></span></label>
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn ghost" onclick="konsultaciya()">Консультация</button>
+      <button class="btn primary" onclick="dalee()">Далее <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ СТРАНИЦА 12 ═══════════ -->
+<div id="page12" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Отчёт о доходах</div>
+    <h1>Какие получены доходы</h1>
+    <p class="sub">Указываются виды доходов. Если продано несколько объектов одного вида — ставится одна галочка на весь вид.</p>
+    <div class="chips">
+      <a class="chip w" href="http://ndfl13y.tilda.ws/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></svg> Надо ли сдавать: продажа недвижимости</a>
+      <a class="chip w" href="http://avto3-ndfl.tilda.ws/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></svg> Надо ли сдавать: продажа транспорта</a>
+    </div>
+    <label class="opt"><input type="checkbox" id="doh_zhiloe"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Продано жилое недвижимое имущество или участок</span><span class="od">Квартира, комната, жилой дом, земельный участок.</span></span></label>
+    <label class="opt"><input type="checkbox" id="doh_sadovy"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Продан садовый дом</span></span></label>
+    <label class="opt"><input type="checkbox" id="doh_drugaya_nedv"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Продана другая недвижимость</span><span class="od">НЕ квартира, НЕ комната, НЕ жилой дом, НЕ участок, НЕ садовый дом.</span></span></label>
+    <label class="opt"><input type="checkbox" id="doh_transport"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Продано транспортное средство</span></span></label>
+    <label class="opt"><input type="checkbox" id="doh_cennye"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Проданы ценные бумаги или доля в капитале организации</span><span class="od">НЕ организованный рынок, НЕ брокер, НЕ инвестиционный счёт.</span></span></label>
+    <label class="opt"><input type="checkbox" id="doh_drugoe"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Продано другое имущество</span></span></label>
+    <label class="opt"><input type="checkbox" id="doh_ustupka"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Переданы имущественные права по договору уступки</span><span class="od">В том числе на недостроенное жильё.</span></span></label>
+    <label class="opt"><input type="checkbox" id="doh_vyigrysh"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Получен выигрыш</span></span></label>
+    <label class="opt"><input type="checkbox" id="doh_podarok"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Получен подарок НЕ от близкого родственника</span></span></label>
+    <label class="opt"><input type="checkbox" id="doh_izyatie"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Изъятие имущества</span></span></label>
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn ghost" onclick="konsultaciya()">Консультация</button>
+      <button class="btn primary" onclick="dalee()">Далее <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ СТРАНИЦА 13 ═══════════ -->
+<div id="page13" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Отчёт о доходах</div>
+    <h1>Как были оформлены сделки</h1>
+    <p class="sub">Можно поставить несколько галочек, если были разные виды договоров.</p>
+    <details><summary>Пояснения по договору мены</summary>
+      <p>Договор мены расценивается налоговиками как два одновременно заключённых договора: по первому вы продаёте имущество, по второму — покупаете.</p>
+      <p>Поэтому по договору мены возможно получить налоговый вычет так же, как по договору покупки, если в договоре записана стоимость обмениваемого имущества.</p>
+    </details>
+
+    <div id="blok13_sadovy" class="block" hidden>
+      <span class="bt2">Прекращено право собственности на садовый дом (дома)</span>
+      <label class="opt"><input type="checkbox" id="s13_sadovy_mena"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">В связи с обменом на другое имущество по договору мены</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_sadovy_prodazha"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">В связи с продажей по договору продажи</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_sadovy_nasledstvo"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Хотя бы один садовый дом был получен в наследство</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_sadovy_podarok"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Хотя бы один садовый дом был получен в подарок от близкого родственника</span></span></label>
+      <details><summary>Кто является близким родственником и налоги с подарков</summary>
+        <p>Близкие родственники: супруг (супруга), родители и дети (в том числе усыновители и усыновлённые), дедушки, бабушки и внуки, полнородные и неполнородные братья и сёстры.</p>
+        <p>Подарки от близких родственников НДФЛ не облагаются. Если недвижимость, транспортное средство, акции, доли или паи подарены лицом, не являющимся близким родственником, доход облагается НДФЛ.</p>
+      </details>
+    </div>
+
+    <div id="blok13_zhiloe" class="block" hidden>
+      <span class="bt2">Прекращено право собственности на жилой дом, квартиру, комнату, участок</span>
+      <label class="opt"><input type="checkbox" id="s13_zhiloe_mena"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">В связи с обменом на другое имущество по договору мены</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_zhiloe_prodazha"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">В связи с продажей по договору продажи</span></span></label>
+      <div id="blok13_zhiloe_vychet" hidden>
+        <label class="opt"><input type="checkbox" id="s13_zhiloe_vychet" onclick="proveritVychetZhiloe()"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">По всем проданным квартирам, комнатам, домам и участкам получаю вычет по приобретению жилья в этом году</span><span class="od">Подтверждающие документы прикладываются к текущей декларации. Отметка снимет вопросы о способе приобретения ниже.</span></span></label>
+      </div>
+      <label class="opt"><input type="checkbox" id="s13_zhiloe_nasledstvo"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Хотя бы один объект был получен в наследство</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_zhiloe_podarok"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Хотя бы один объект был получен в подарок от близкого родственника</span></span></label>
+      <details><summary>Кто является близким родственником и налоги с подарков</summary>
+        <p>Близкие родственники: супруг (супруга), родители и дети (в том числе усыновители и усыновлённые), дедушки, бабушки и внуки, полнородные и неполнородные братья и сёстры.</p>
+        <p>Подарки от них НДФЛ не облагаются независимо от вида имущества.</p>
+      </details>
+    </div>
+
+    <div id="blok13_zhiloe_sadovy" class="block" hidden>
+      <label class="opt"><input type="checkbox" id="s13_dohod_million"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Доход от продажи всех жилых и садовых домов, участков, квартир, комнат за год был меньше миллиона, умноженного на размер доли</span><span class="od">С 1 января по 31 декабря.</span></span></label>
+      <details><summary>Примечание о кадастровой стоимости</summary>
+        <p>Если стоимость продажи меньше 70% кадастровой стоимости, доходом признаётся 70% кадастровой стоимости. Кадастровая стоимость берётся на 1 января года продажи либо на дату постановки на кадастровый учёт, если объект не стоял на учёте на 1 января.</p>
+        <p>В некоторых регионах стоимость продажи сравнивается не с 70%, а со 100% кадастровой стоимости.</p>
+      </details>
+      <details><summary>Как делится вычет, если проданы доли</summary>
+        <p>Если объект продан как единый объект по одному договору, вычет в размере миллиона распределяется между совладельцами пропорционально их долям.</p>
+        <p>Если каждый совладелец продал свою долю как самостоятельный объект по отдельному договору, каждый вправе заявить полный вычет.</p>
+      </details>
+    </div>
+
+    <div id="blok13_drugaya_nedv" class="block" hidden>
+      <span class="bt2">Право собственности на прочую недвижимость прекращено</span>
+      <label class="opt"><input type="checkbox" id="s13_drugaya_mena"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">В связи с обменом на другое имущество по договору мены</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_drugaya_prodazha"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">В связи с продажей по договору продажи</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_drugaya_nasledstvo"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Хотя бы один объект был получен в наследство</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_drugaya_podarok"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Хотя бы один объект был получен в подарок от близкого родственника</span></span></label>
+      <details><summary>Кто является близким родственником и налоги с подарков</summary>
+        <p>Близкие родственники: супруг (супруга), родители и дети, дедушки, бабушки и внуки, полнородные и неполнородные братья и сёстры. Подарки от них НДФЛ не облагаются.</p>
+      </details>
+      <label class="opt"><input type="checkbox" id="s13_dohod_250_nedv"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Доход от продажи всей прочей недвижимости за год был меньше 250 тысяч</span><span class="od">Кроме жилых и садовых домов, участков, квартир, комнат.</span></span></label>
+      <details><summary>Примечание о кадастровой стоимости</summary>
+        <p>Если стоимость продажи меньше 70% кадастровой стоимости, доходом признаётся 70% кадастровой стоимости — на 1 января года продажи или на дату постановки на учёт. В отдельных регионах сравнение идёт со 100%.</p>
+      </details>
+    </div>
+
+    <div id="blok13_transport" class="block" hidden>
+      <span class="bt2">По одному или нескольким транспортным средствам</span>
+      <label class="opt"><input type="checkbox" id="s13_ts_prodazha"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Право перешло к покупателю по ДОГОВОРУ ПРОДАЖИ</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_ts_mena"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Право перешло к покупателю по ДОГОВОРУ МЕНЫ</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_ts_komissiya"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Передано для продажи по ДОГОВОРУ КОМИССИИ</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_ts_u_organizacii"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Приобретено у организации или предпринимателя</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_ts_u_fizlica"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Приобретено у физического лица, не являющегося предпринимателем</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_ts_podarok_nasledstvo"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Получено в подарок от близкого родственника или в наследство</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_ts_oplata_v_den"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Оплата произведена в день подписания договора продажи</span></span></label>
+      <label class="opt"><input type="checkbox" id="s13_ts_oplata_otlichaetsya"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Дата оплаты отличается от даты подписания договора</span></span></label>
+    </div>
+
+    <div id="blok13_dvizhimoe" class="block" hidden>
+      <!-- ПРАВКА 2: эта галочка блокирует и очищает пять галочек о приобретении и оплате ТС -->
+      <label class="opt"><input type="checkbox" id="s13_dohod_250_dvizhimoe" onclick="proveritDvizhimoe()"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Доход от продажи всех транспортных средств и иного движимого имущества за год был меньше 250 тысяч</span><span class="od">С 1 января по 31 декабря. При отметке вопросы о том, как транспорт приобретался и оплачивался, снимаются — подтверждающие расходы документы не требуются.</span></span></label>
+    </div>
+
+    <div id="blok13_podarok" class="block" hidden>
+      <span class="bt2">По договору дарения</span>
+      <label class="opt"><input type="checkbox" id="s13_podarok_nedvizhimost"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">В подарок получено недвижимое имущество</span></span></label>
+      <details><summary>Примечание</summary>
+        <p>НЕ ставьте галочку, если получены только другие подарки, кроме недвижимости. Поставьте её в том числе тогда, когда среди прочих подарков была получена недвижимость.</p>
+      </details>
+    </div>
+
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn ghost" onclick="konsultaciya()">Консультация</button>
+      <button class="btn primary" onclick="dalee()">Далее <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ СТРАНИЦА 14 ═══════════ -->
+<div id="page14" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Отчёт о доходах</div>
+    <h1>Вычеты и расходы по проданным объектам</h1>
+    <p class="sub">Выберите, какие вычеты и расходы будут записаны в декларацию. В каждом показанном блоке нужна хотя бы одна отметка.</p>
+
+    <div id="blok14_vychet_note" hidden>
+      <details><summary>Примечание</summary>
+        <p>Укажите только те проданные объекты, по которым не требуется предоставить в этом году документы в связи с получением имущественного вычета при приобретении жилья.</p>
+        <p>НЕ надо указывать объекты, по которым будет заявлен вычет в размере миллиона, умноженного на долю, или 250 тысяч, умноженных на долю — подтверждающие расходы документы в этом случае не требуются.</p>
+      </details>
+      <details><summary>Как применить вычеты, если продано несколько объектов</summary>
+        <p>Вычет в размере миллиона рублей применяется суммарно за календарный год ко всем проданным жилым домам, квартирам, комнатам и участкам, а не к каждому объекту отдельно.</p>
+        <p>Вычет в размере 250 тысяч рублей применяется суммарно за год ко всему прочему имуществу, включая транспортные средства. Если объектов несколько, вычет распределяется между ними по выбору налогоплательщика.</p>
+      </details>
+    </div>
+
+    <div id="blok14_zhiloe" class="block" hidden>
+      <span class="bt2">По квартире, комнате, жилому дому, участку</span>
+      <label class="opt"><input type="checkbox" id="s14_zhiloe_vtorichka"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Право перешло к вам от другого владельца</span><span class="od">Вы не являетесь самым первым владельцем недвижимости.</span></span></label>
+      <label class="opt"><input type="checkbox" id="s14_zhiloe_postroen"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Продан дом, построенный на личном земельном участке</span><span class="od">Вы являетесь первым владельцем.</span></span></label>
+      <label class="opt"><input type="checkbox" id="s14_zhiloe_ddu"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Квартира или комната приобретена на стадии строительства</span><span class="od">По договору долевого участия, инвестирования, ЖСК или подобному.</span></span></label>
+      <label class="opt"><input type="checkbox" id="s14_zhiloe_ustupka"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Квартира или комната приобретена по договору уступки права требования</span></span></label>
+    </div>
+
+    <div id="blok14_sadovy" class="block" hidden>
+      <span class="bt2">По садовому дому</span>
+      <label class="opt"><input type="checkbox" id="s14_sadovy_vtorichka"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Садовый дом приобретён на вторичном рынке</span></span></label>
+      <label class="opt"><input type="checkbox" id="s14_sadovy_postroen"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Садовый дом построен на личном земельном участке</span></span></label>
+    </div>
+
+    <div id="blok14_drugaya" class="block" hidden>
+      <span class="bt2">Прочая недвижимость</span>
+      <label class="opt"><input type="checkbox" id="s14_drugaya_vtorichka"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Приобретена на вторичном рынке</span><span class="od">Вы не являетесь самым первым владельцем.</span></span></label>
+      <label class="opt"><input type="checkbox" id="s14_drugaya_postroen"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Построена на личном земельном участке</span></span></label>
+      <label class="opt"><input type="checkbox" id="s14_drugaya_ddu"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Приобретена на стадии строительства</span><span class="od">По договору долевого участия, инвестирования, ЖСК или подобному.</span></span></label>
+      <label class="opt"><input type="checkbox" id="s14_drugaya_ustupka"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Приобретена по договору уступки права требования</span></span></label>
+    </div>
+
+    <label class="opt"><input type="checkbox" id="s14_kredit_rashody"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Проданное имущество приобретено с использованием целевого кредита</span><span class="od">Отметьте, если в декларации будут записаны расходы на уплату процентов по целевому кредиту (займу) на приобретение любого проданного объекта или имущественных прав.</span></span></label>
+
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn ghost" onclick="konsultaciya()">Консультация</button>
+      <button class="btn primary" onclick="dalee()">Далее <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ СТРАНИЦА 15 ═══════════ -->
+<div id="page15" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Отчёт о доходах</div>
+    <h1>Прочие вопросы о доходах</h1>
+
+    <div id="blok15_ip_rashody" hidden>
+      <label class="opt"><input type="checkbox" id="s15_ip_rashody"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Расходы на приобретение имущества были учтены в расходах предпринимателя</span><span class="od">Полностью или частично.</span></span></label>
+    </div>
+
+    <div id="blok15_brak_rashody" hidden>
+      <label class="opt"><input type="checkbox" id="s15_brak_rashody"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Состояли в браке на дату приобретения и распределяете РАСХОДЫ</span><span class="od">Между супругами распределяются расходы на приобретение проданного имущества или имущественных прав.</span></span></label>
+    </div>
+
+    <div id="blok15_brak_dohody" hidden>
+      <label class="opt"><input type="checkbox" id="s15_brak_dohody"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Состояли в браке на дату приобретения и распределяете ДОХОДЫ</span></span></label>
+      <details><summary>Примечание</summary><p>Распределение доходов должно быть заверено у нотариуса.</p></details>
+    </div>
+
+    <div id="blok15_pasport" hidden>
+      <label class="opt"><input type="checkbox" id="s15_pasport"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">Были изменения паспортных данных</span><span class="od">Паспортные данные в декларации не совпадают с данными в прилагаемых документах.</span></span></label>
+    </div>
+
+    <div id="blok15_oplata" class="block" hidden>
+      <span class="bt2">Виды оплаты при приобретении проданного имущества</span>
+      <p class="sub">Кроме строительства на личном земельном участке — перечислять все платёжные документы в этом случае может быть нерационально. Можно выбрать несколько видов: например, задаток наличными, остальное со счёта.</p>
+      <label class="opt"><input type="checkbox" id="s15_nal"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">НАЛИЧНЫМИ</span><span class="od">В том числе через сейфовые ячейки и другие способы временного хранения денег.</span></span></label>
+      <label class="opt"><input type="checkbox" id="s15_beznal"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">БЕЗНАЛИЧНЫМИ</span><span class="od">Перечисление продавцу напрямую со счёта, без дополнительных условий.</span></span></label>
+      <label class="opt"><input type="checkbox" id="s15_gos_fond"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">ОТ ГОСУДАРСТВЕННОГО ФОНДА</span><span class="od">Перечисление со счёта фонда или другой государственной организации.</span></span></label>
+      <label class="opt"><input type="checkbox" id="s15_akkreditiv"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">АККРЕДИТИВ</span></span></label>
+      <label class="opt"><input type="checkbox" id="s15_posrednik"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">ЧЕРЕЗ ПОСРЕДНИКА</span><span class="od">Деньги перечисляются продавцу через третье лицо, в том числе зависимые организации банков.</span></span></label>
+      <div id="blok15_eskrou" hidden>
+        <label class="opt"><input type="checkbox" id="s15_eskrou"><span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="obody"><span class="ot">ЭСКРОУ</span></span></label>
+      </div>
+    </div>
+
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn ghost" onclick="konsultaciya()">Консультация</button>
+      <button class="btn primary" onclick="dalee()">Далее <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ ИТОГ ═══════════ -->
+<div id="itog" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Результат</div>
+    <h1>Итоговый список документов</h1>
+
+    <div id="itog_pusto" hidden>
+      <div class="empty">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        <p class="lead">По выбранным ответам документов не найдено. Вернитесь назад и проверьте отметки — возможно, отмечены только служебные варианты.</p>
+      </div>
+    </div>
+
+    <div id="itog_rezultat" hidden>
+      <p class="sub">Список составлен по вашим ответам. Одинаковые документы показаны одной строкой.</p>
+      <span class="badge">Всего позиций <b id="itog_kol">0</b></span>
+      <ol id="itog_spisok" class="doclist"></ol>
+      <div class="acts">
+        <button class="btn teal" onclick="kopirovatSpisok()"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Скопировать</button>
+        <button class="btn ghost" onclick="skachatSpisok()"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Скачать .txt</button>
+        <button class="btn ghost" onclick="window.print()"><svg viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> Печать / PDF</button>
+      </div>
+    </div>
+
+    <details class="dbg">
+      <summary>Служебная проверка: какие галочки учтены</summary>
+      <p id="itog_otchet_itog"></p>
+      <table>
+        <thead><tr><th>Страница</th><th>ID</th><th>Формулировка</th><th>Документов</th></tr></thead>
+        <tbody id="itog_otchet_telo"></tbody>
+      </table>
+    </details>
+
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn ghost" onclick="konsultaciya()">Консультация</button>
+      <button class="btn primary" onclick="zanovo()">Начать заново</button>
+    </div>
+    <div class="foot-link">Остались вопросы? <button class="ll" onclick="konsultaciya()">Обратитесь за консультацией</button>.</div>
+  </div>
+</div>
+
+<!-- ═══════════ КОНТАКТЫ ═══════════ -->
+<div id="kontakty" class="page" hidden>
+  <div class="card">
+    <div class="eyebrow">Консультация</div>
+    <h1>Связаться с автором</h1>
+    <p class="sub">Если ни один из случаев не подходит или нужна помощь с заполнением декларации.</p>
+    <a class="ct" href="mailto:xiiikopeek@yandex.ru"><span class="ci"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span><span><b>xiiikopeek@yandex.ru</b><span>Электронная почта</span></span></a>
+    <a class="ct" href="tel:+79535778953"><span class="ci"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span><span><b>+7 953 577-89-53</b><span>Телефон</span></span></a>
+    <a class="ct" href="https://vk.com/3ndflnn" target="_blank" rel="noopener"><span class="ci"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M8 12h8M12 8v8"/></svg></span><span><b>Группа ВКонтакте</b><span>vk.com/3ndflnn</span></span></a>
+    <a class="ct" href="https://dzen.ru/13kopeek" target="_blank" rel="noopener"><span class="ci"><svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></span><span><b>Канал «13 копеек»</b><span>Видео о декларациях и вычетах</span></span></a>
+    <a class="ct" href="https://3-ndfl-nn.1c-umi.ru/dokumenty_dlya_3-ndfl_poryadok_polucheniya_vycheta/blanki_3-ndfl_i_programmy/" target="_blank" rel="noopener"><span class="ci"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></span><span><b>Бланки и программы</b><span>Актуальные формы декларации</span></span></a>
+    <div class="nav">
+      <button class="btn ghost" onclick="nazad()"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Назад</button>
+      <span class="grow"></span>
+      <button class="btn primary" onclick="zanovo()">Начать заново</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>Автор программы — Андрей Дементьев («13 копеек»). Программа предназначена для бесплатного использования.</footer>
+
+<div class="scrim" id="scrim" onclick="zakrytPreduprezhdenie()"></div>
+<div class="modal" id="modal" role="alertdialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="mi"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div>
+  <h3 id="modalTitle">Нужно уточнить ответ</h3>
+  <p id="modalText"></p>
+  <button class="btn primary" onclick="zakrytPreduprezhdenie()">Понятно</button>
+</div>
+<div class="toast" id="toast"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span id="toastTxt"></span></div>
+
+<script>
+"use strict";
+
+/* ══════════════════════════════════════════════════════════════════════
+   РАЗДЕЛ 1. ПОВТОРЯЮЩИЕСЯ ФОРМУЛИРОВКИ ДОКУМЕНТОВ
+   Склейка идёт по точному совпадению текста, поэтому одинаковые документы
+   вынесены в переменные — так они гарантированно совпадут символ в символ.
+   ══════════════════════════════════════════════════════════════════════ */
+var D_FIO       = 'ФИО (фамилия, имя, отчество) и последняя прописка';
+var D_TELEFON   = 'номер телефона (предупреждение: будут звонки и СМС от спамеров)';
+var D_2NDFL     = 'справка о доходах (2-НДФЛ) от работодателя (налогового агента) — нужны все справки от всех налоговых агентов за календарный год';
+var P_2NDFL     = 'Сдавать сами справки в налоговую не обязательно. Имеет смысл сдать их только в начале года, когда работодатель (налоговый агент) ещё не отчитался о ваших доходах.';
+
+var D_EGRN      = 'выписка из ЕГРН (единого государственного реестра недвижимости)';
+var D_EGRN_DOM  = D_EGRN + ' на приобретённый жилой дом';
+var D_EGRN_UCH  = D_EGRN + ' на приобретённый участок';
+var D_STROIT    = 'документы о расходах на строительство дома (чеки, квитанции, товарные чеки, платёжные поручения, накладные, акты, счета-фактуры, договоры)';
+var D_KREDIT    = 'кредитный договор (в том числе несколько, если несколько объектов куплены в кредит)';
+
+var D_ROZHD_DET = 'свидетельство о рождении ребёнка';
+var D_ROZHD_POD = 'свидетельство о рождении подопечного';
+var D_OPEKA     = '(акт, постановление) о назначении опеки (попечительства)';
+var D_BRAK      = 'свидетельство о браке';
+var D_OCHNO     = 'справка об очной форме обучения';
+var D_OCHNO_POD = 'справка об очной форме обучения подопечного';
+var D_INV_DET   = 'справка об инвалидности ребёнка';
+var D_INV_POD   = 'справка об инвалидности подопечного';
+var D_NEDEE     = 'решение суда о недееспособности';
+var D_SVOE      = 'своё свидетельство о рождении';
+var D_IMYA      = 'документы об изменении имени (браке, разводе) свои или родственников';
+var D_TRIO_ROD  = D_SVOE + ', ' + D_IMYA;
+var D_TRIO_BRAT = 'свидетельство о рождении брата (сестры), ' + D_SVOE + ', ' + D_IMYA;
+
+var D_PASPORT   = 'страницы паспорта (разворот с фото и страница с отметкой о старом паспорте) или документ о перемене имени (свидетельство о браке, разводе, перемене имени или подобный)';
+var D_REKVIZITY = 'реквизиты счёта, на который должны выплатить деньги: БИК банка и номер счёта';
+var P_REKVIZITY = 'Счёт должен быть открыт на того же человека, кто сдаёт декларацию. На счёт другого человека выплата не производится.';
+var P_RASPISKA  = 'В договоре может быть указано, что распиской является сам договор.';
+
+var D_MATKAP    = 'сумма использованного материнского капитала (или другой субсидии)';
+var D_BANK_SUB  = 'справка (сведения) из банка о том, какая часть материнского капитала (или другой субсидии) израсходована на погашение процентов по кредиту, а какая — на погашение основного долга';
+
+var D_MED_SPR   = 'справка об оплате медицинских услуг для представления в налоговый орган (приказ ФНС России от 08.11.2023 № ЕА-7-11/824@), КНД 1151156';
+var D_FIZ_SPR   = 'справка об оплате физкультурно-оздоровительных услуг для представления в налоговый орган (приказ ФНС России от 18.10.2023 № ЕД-7-11/756@), КНД 1151160';
+var D_STR_SPR   = 'справка об уплате страховых взносов для представления в налоговый орган (приказ ФНС России от 12.10.2023 № БВ-7-11/736@), КНД 1151159';
+var D_OBUCH_SPR = 'справка об оплате образовательных услуг для представления в налоговый орган (приказ ФНС России от 18.10.2023 № ЕД-7-11/755@), КНД 1151158';
+var D_PDS_SPR   = 'справка об уплате пенсионных взносов по договору негосударственного пенсионного обеспечения (приказ ФНС России от 12.10.2023 № БВ-7-11/737@), КНД 1151157, либо документ, подтверждающий фактические взносы налогоплательщика по договору НПО, выдаваемый негосударственным пенсионным фондом (КНД 1151166, приказ ФНС России от 18.10.2024 № ЕД-7-11/874@, с 2025 года)';
+
+var D_IIS_DOG   = 'договор на открытие инвестиционного счёта или заявление о присоединении к оферте для открытия инвестиционного счёта с реквизитами организации-брокера';
+var D_BRK_DOG   = 'договор на открытие брокерского счёта или заявление о присоединении к оферте для открытия брокерского счёта с реквизитами организации-брокера';
+var D_2NDFL_BRK = 'справка 2-НДФЛ от брокера';
+var D_OTCHET    = 'отчёт брокера';
+var D_VZNOS_IIS = 'платёжный документ, подтверждающий внесение денег на инвестиционный счёт';
+
+var D_NASLED    = 'свидетельство о праве на наследство или завещание';
+var D_POKUPKI   = ' (договор, свидетельство о собственности, акт, платёжный документ или другие документы о приобретении)';
+var D_TS_OPLATA = 'расписка (договор может являться распиской) или платёжный документ организации или ИП (чек, квитанция, платёжное поручение)';
+
+/* ══════════════════════════════════════════════════════════════════════
+   РАЗДЕЛ 2. КАРТА: ГАЛОЧКА → ДОКУМЕНТЫ
+   Пустой массив [] — служебная галочка, документов не даёт.
+   Запись { d: 'текст', p: 'примечание' } — документ с раскрывающимся пояснением.
+   ══════════════════════════════════════════════════════════════════════ */
+var DOKUMENTY = {
+
+/* --- Страница 1 --- */
+imu: [ D_FIO, D_TELEFON, { d: D_2NDFL, p: P_2NDFL } ],
+soc: [ D_FIO, D_TELEFON, { d: D_2NDFL, p: P_2NDFL } ],
+pro: [ D_FIO, D_TELEFON ],
+
+/* --- Страница 2 --- */
+kvar: [ D_EGRN + ' на приобретённую квартиру или комнату', 'договор покупки (мены) приобретённой квартиры или комнаты' ],
+dom_uch: [ D_EGRN_DOM, D_EGRN_UCH, 'договор покупки (мены) приобретённого дома', 'договор покупки (мены) приобретённого участка' ],
+str_uch_kup: [ D_EGRN_DOM, D_EGRN_UCH, 'договор покупки (мены) приобретённого участка', D_STROIT ],
+str_uch_bez: [ D_EGRN_DOM, D_EGRN_UCH, D_STROIT ],
+str_ddu: [ D_EGRN + ' на квартиру или комнату', 'акт приёмки-передачи (передаточный акт) на квартиру или комнату', 'договор участия в долевом строительстве (инвестирования или подобный)' ],
+kredit: [ D_KREDIT ],
+prots: [ 'справка об уплаченных процентах по кредиту (кредитам) на один жилой объект — за все годы с начала выплаты процентов до даты закрытия кредита или до 31 декабря прошлого года' ],
+ranee: [ 'предыдущие декларации, в которых был записан имущественный вычет (по приобретению жилья или по уплаченным процентам)',
+  { d: 'сведения о предоставленном имущественном вычете из налоговой, в том числе из личного кабинета налогоплательщика',
+    p: 'Эти сведения нередко расходятся с декларациями — сверьте оба источника. Сумма израсходованного вычета — это доходы, которые не были обложены налогом в предыдущие годы благодаря вычету; иначе говоря, сумма расходов, уже учтённая для уменьшения налога. Возвращённый налог равен 13% от этой суммы (или иному проценту по вашей ставке).' } ],
+
+/* --- Страница 3 --- */
+pens: [ 'документ о назначении пенсии (удостоверение, справка или подобный)' ],
+dolya_detey: [ D_ROZHD_DET, 'выписки из ЕГРН по имуществу, оформленному на детей' ],
+dolya_podopechnyh: [ D_ROZHD_POD, D_OPEKA, 'выписки из ЕГРН по имуществу, оформленному на подопечных' ],
+brak: [ D_BRAK, 'заявление о распределении вычета' ],
+procenty_vpervye: [ D_KREDIT ],
+
+/* --- Страница 4 --- */
+sub_prod_tek: [ D_MATKAP ],
+sub_prod_pred: [ D_MATKAP ],
+sub_bank_tek: [ D_BANK_SUB ],
+sub_bank_pred: [ D_BANK_SUB ],
+nis: [ 'договор целевого жилищного займа участника накопительно-ипотечной системы военнослужащих' ],
+
+/* --- Страница 5 --- */
+nal: [ { d: 'расписка, что продавец недвижимости получил от вас деньги', p: P_RASPISKA } ],
+beznal: [ 'платёжное поручение (от вас продавцу недвижимости)' ],
+gos_fond: [ 'платёжное поручение (выписка или справка) о перечислении субсидии продавцу недвижимости' ],
+akkreditiv: [ 'заявление или договор на открытие аккредитива плюс платёжное поручение или документ с названием «аккредитив» — должно быть явно видно, что деньги перечислены от вас продавцу недвижимости' ],
+posrednik: [ 'договор поручения с посредником (в том числе с зависимой организацией банка) на перечисление ваших денег продавцу', 'платёжное поручение, что посредник перечислил деньги продавцу' ],
+eskrou: [ 'договор на открытие счёта эскроу', 'платёжное поручение (чек, квитанция), что вы внесли деньги на счёт эскроу' ],
+
+/* --- Страница 6 --- */
+pasport: [ D_PASPORT ],
+vozvrat: [ { d: D_REKVIZITY, p: P_REKVIZITY } ],
+
+/* --- Страница 7 --- */
+obuch_ochno: [],
+medic_uslugi: [ D_MED_SPR ],
+fizkultura: [ D_FIZ_SPR ],
+strah_zhizni: [ D_STR_SPR + ' — на страхование жизни' ],
+dms: [ D_STR_SPR + ' — на медицинское страхование' ],
+lekarstva: [ 'чеки (квитанции, платёжные поручения), подтверждающие оплату медицинских препаратов' ],
+pds: [ D_PDS_SPR ],
+pens_strah: [ D_STR_SPR + ' — на пенсионное страхование' ],
+za_rodnyh: [],
+obuch_neochno: [],
+blagotvor: [ 'договор пожертвования', 'чеки (квитанции, платёжные поручения), подтверждающие перечисление пожертвования' ],
+dop_pens_vznosy: [ 'справка налогового агента об уплате дополнительных пенсионных взносов (если оплата была не лично налогоплательщиком)',
+  'договор с пенсионным фондом на оплату дополнительных пенсионных взносов',
+  'чеки (квитанции, платёжные поручения), подтверждающие оплату взносов в пенсионный фонд',
+  { d: 'лицензия пенсионного фонда', p: 'Лицензия не требуется, если номер лицензии указан в договоре.' } ],
+iis_do2023: [ D_IIS_DOG ],
+iis_posle2023: [ D_IIS_DOG, 'чеки (квитанции, платёжные поручения), подтверждающие внесение денег на инвестиционный счёт', D_OTCHET, D_2NDFL_BRK ],
+cennye_bumagi: [ D_BRK_DOG, D_2NDFL_BRK ],
+std_deti: [ D_ROZHD_DET ],
+std_podopechnye: [ D_ROZHD_POD, D_OPEKA ],
+std_invalidy: [ 'документ, подтверждающий статус (инвалида, ветерана, чернобыльца, героя)' ],
+
+/* --- Страница 8: очное обучение --- */
+ochno_sam: [],
+ochno_deti18: [ D_ROZHD_DET ],
+ochno_deti23: [ D_ROZHD_DET ],
+ochno_podop18: [ D_ROZHD_POD, D_OPEKA ],
+ochno_podop23: [ D_ROZHD_POD, D_OPEKA ],
+ochno_brat24: [ D_TRIO_BRAT ],
+ochno_suprug: [ D_BRAK ],
+
+/* --- Страница 8: медицинские услуги --- */
+med_sam: [],
+med_deti18: [ D_ROZHD_DET ],
+med_deti23: [ D_ROZHD_DET, D_OCHNO ],
+med_deti_nedee: [ D_ROZHD_DET, D_NEDEE ],
+med_podop18: [ D_ROZHD_POD, D_OPEKA ],
+med_podop23: [ D_ROZHD_POD, D_OPEKA, D_OCHNO_POD ],
+med_podop_nedee: [ D_ROZHD_POD, D_OPEKA, D_NEDEE ],
+med_suprug: [ D_BRAK ],
+med_roditeli: [ D_TRIO_ROD ],
+
+/* --- Страница 8: физкультурные услуги --- */
+fiz_sam: [],
+fiz_deti18: [ D_ROZHD_DET ],
+fiz_deti23: [ D_ROZHD_DET, D_OCHNO ],
+fiz_podop18: [ D_ROZHD_POD, D_OPEKA ],
+fiz_podop23: [ D_ROZHD_POD, D_OPEKA, D_OCHNO_POD ],
+fiz_roditeli_pens: [ D_TRIO_ROD, 'пенсионное удостоверение родителей' ],
+
+/* --- Страница 8: страхование жизни --- */
+zhizn_sam: [],
+zhizn_deti_any: [ D_ROZHD_DET ],
+zhizn_podop_deti_inv: [ D_ROZHD_POD, D_OPEKA, D_INV_POD ],
+zhizn_brat_any: [ D_TRIO_BRAT ],
+zhizn_suprug: [ D_BRAK ],
+zhizn_roditeli: [ D_TRIO_ROD ],
+zhizn_babushka: [ D_SVOE, 'свидетельство о рождении родителя', D_IMYA ],
+zhizn_vnuki: [ D_ROZHD_DET, 'свидетельство о рождении внука', D_IMYA ],
+
+/* --- Страница 8: медицинское страхование --- */
+dms_sam: [],
+dms_deti18: [ D_ROZHD_DET ],
+dms_deti23: [ D_ROZHD_DET, D_OCHNO ],
+dms_podop18: [ D_ROZHD_POD, D_OPEKA ],
+dms_podop23: [ D_ROZHD_POD, D_OPEKA, D_OCHNO_POD ],
+dms_suprug: [ D_BRAK ],
+dms_roditeli: [ D_TRIO_ROD ],
+
+/* --- Страница 8: медикаменты --- */
+lekar_sam: [],
+lekar_deti18: [ D_ROZHD_DET ],
+lekar_deti23: [ D_ROZHD_DET, D_OCHNO ],
+lekar_deti_nedee: [ D_ROZHD_DET, D_NEDEE ],
+lekar_podop18: [ D_ROZHD_POD, D_OPEKA ],
+lekar_podop23: [ D_ROZHD_POD, D_OPEKA, D_OCHNO_POD ],
+lekar_podop_nedee: [ D_ROZHD_POD, D_OPEKA, D_NEDEE ],
+lekar_suprug: [ D_BRAK ],
+lekar_roditeli: [ D_TRIO_ROD ],
+
+/* --- Страница 8: пенсионное обеспечение --- */
+pds_sam: [],
+pds_deti_any: [ D_ROZHD_DET ],
+pds_podop_deti_inv: [ D_ROZHD_POD, D_OPEKA, D_INV_POD ],
+pds_brat_any: [ D_TRIO_BRAT ],
+pds_suprug: [ D_BRAK ],
+pds_roditeli: [ D_TRIO_ROD ],
+pds_babushka: [ D_SVOE, 'свидетельство о рождении родителя', D_IMYA ],
+pds_vnuki: [ D_ROZHD_DET, 'свидетельство о рождении внука', D_IMYA ],
+
+/* --- Страница 8: пенсионное страхование --- */
+pensstr_sam: [],
+pensstr_deti_inv: [ D_ROZHD_DET, D_INV_DET ],
+pensstr_podop_inv: [ D_ROZHD_POD, D_OPEKA, D_INV_POD ],
+pensstr_suprug: [ D_BRAK ],
+pensstr_roditeli: [ D_TRIO_ROD ],
+
+/* --- Страница 9 --- */
+obuch_rf: [ D_OBUCH_SPR ],
+obuch_inostr: [ 'документ, подтверждающий статус иностранной организации, осуществляющей образовательную деятельность (нотариальный перевод)',
+  'договор на обучение в иностранной организации (нотариальный перевод)',
+  'платёжные документы об оплате образовательных услуг иностранной организации (нотариальный перевод, если документ не на русском языке)' ],
+lekar_stacionar: [ { d: 'сведения из медицинской документации на медицинские препараты',
+  p: 'Точного определения в законодательстве нет. Вероятно, это любой документ, оформленный во время оказания медицинских услуг в стационаре, где сказано, что пациенту назначены купленные препараты.' } ],
+lekar_recept: [ 'заверенный врачом рецепт на медицинские препараты для предоставления в налоговые органы' ],
+blago_vozvrat: [ 'сумма возвращённого пожертвования' ],
+pds_rabotodatel: [ 'договор пенсионного обеспечения (долгосрочных сбережений)' ],
+pds_lichno: [],
+pensstr_rabotodatel: [ 'договор пенсионного страхования' ],
+pensstr_lichno: [],
+iis_do2023_vznosy: [],
+broker_pribyl3: [ D_OTCHET ],
+broker_ubytki10: [ 'предыдущие декларации, в которых были указаны вычеты по убыткам от продажи ценных бумаг', 'отчёт брокера за последние 10 лет' ],
+std_ediny: [ 'свидетельство о рождении ребёнка с прочерком в графе одного из родителей (или свидетельство о смерти родителя, или решение о лишении родительских прав)' ],
+std_otkaz: [ 'справка об отказе от стандартного вычета одного из родителей' ],
+std_deti23: [ D_OCHNO ],
+std_deti_inv: [ D_INV_DET ],
+std_podop_inv23: [ D_OCHNO_POD, D_INV_POD ],
+std_nedee: [ D_NEDEE ],
+std_deti_suprug: [ D_BRAK ],
+
+/* --- Страница 10 --- */
+pasport10: [ D_PASPORT ],
+vozvrat10: [ { d: D_REKVIZITY, p: P_REKVIZITY } ],
+
+/* --- Страница 12 --- */
+doh_zhiloe: [ 'выписка из ЕГРН на проданный дом, квартиру, комнату или участок' ],
+doh_sadovy: [ 'выписка из ЕГРН на проданный садовый дом' ],
+doh_drugaya_nedv: [ 'выписка из ЕГРН на проданную недвижимость (НЕ жилой или садовый дом, НЕ участок, НЕ квартира, НЕ комната)' ],
+doh_transport: [ 'свидетельство о собственности на транспортное средство (или вид, марка, модель, госномер)' ],
+doh_cennye: [ 'договор продажи ценных бумаг или доли в уставном капитале организации', 'договор покупки ценных бумаг (или приобретения доли в уставном капитале организации)' ],
+doh_drugoe: [ 'договор продажи имущества (НЕ недвижимость, НЕ транспорт, НЕ ценные бумаги, НЕ имущественные права)', 'договор покупки имущества (НЕ недвижимость, НЕ транспорт, НЕ ценные бумаги, НЕ имущественные права)' ],
+doh_ustupka: [ 'договор уступки права требования (при продаже)', 'договор приобретения имущественных прав (договор участия в долевом строительстве, инвестирования или подобный)' ],
+doh_vyigrysh: [ 'справка о доходах (2-НДФЛ) от организации, выплатившей выигрыш' ],
+doh_podarok: [ 'договор дарения' ],
+doh_izyatie: [ 'решение (или аналогичный документ) об изъятии имущества или договор мены (соглашение)' ],
+
+/* --- Страница 13: садовый дом --- */
+s13_sadovy_mena: [ 'договор мены садового дома (при прекращении права собственности)' ],
+s13_sadovy_prodazha: [ 'договор продажи садового дома' ],
+s13_sadovy_nasledstvo: [ D_NASLED, 'документы о приобретении садового дома наследодателем' + D_POKUPKI ],
+s13_sadovy_podarok: [ 'договор дарения садового дома', 'документы, подтверждающие родство с дарителем садового дома', 'документы о приобретении садового дома дарителем' + D_POKUPKI ],
+
+/* --- Страница 13: жилое имущество --- */
+s13_zhiloe_mena: [ 'договор мены жилого дома (квартиры, комнаты или участка) при прекращении права собственности' ],
+s13_zhiloe_prodazha: [ 'договор продажи жилого дома (квартиры, комнаты или участка)' ],
+s13_zhiloe_vychet: [],
+s13_zhiloe_nasledstvo: [ D_NASLED, 'документы о приобретении жилого дома (квартиры, комнаты или участка) наследодателем' + D_POKUPKI ],
+s13_zhiloe_podarok: [ 'договор дарения жилого дома (квартиры, комнаты или участка)', 'документы, подтверждающие родство с дарителем жилого дома (квартиры, комнаты или участка)', 'документы о приобретении жилого дома (квартиры, комнаты или участка) дарителем' + D_POKUPKI ],
+s13_dohod_million: [],
+
+/* --- Страница 13: прочая недвижимость --- */
+s13_drugaya_mena: [ 'договор мены недвижимости (НЕ жилой или садовый дом, НЕ участок, НЕ квартира, НЕ комната) при прекращении права собственности' ],
+s13_drugaya_prodazha: [ 'договор продажи недвижимости (НЕ жилой или садовый дом, НЕ участок, НЕ квартира, НЕ комната)' ],
+s13_drugaya_nasledstvo: [ D_NASLED, 'документы о приобретении недвижимости (НЕ жилой или садовый дом, НЕ участок, НЕ квартира, НЕ комната) наследодателем' + D_POKUPKI ],
+s13_drugaya_podarok: [ 'договор дарения недвижимости (НЕ жилого или садового дома, НЕ участка, НЕ квартиры, НЕ комнаты)', 'документы, подтверждающие родство с дарителем недвижимости (НЕ жилого или садового дома, НЕ участка, НЕ квартиры, НЕ комнаты)', 'документы о приобретении недвижимости (НЕ жилой или садовый дом, НЕ участок, НЕ квартира, НЕ комната) дарителем' + D_POKUPKI ],
+s13_dohod_250_nedv: [],
+
+/* --- Страница 13: транспорт --- */
+s13_ts_prodazha: [ 'договор продажи транспортного средства' ],
+s13_ts_mena: [ 'договор мены транспортного средства (при прекращении права собственности)' ],
+s13_ts_komissiya: [ 'договор комиссии (при прекращении права собственности)' ],
+s13_ts_u_organizacii: [ 'договор покупки транспортного средства у организации (предпринимателя)', 'акт передачи транспортного средства', 'счёт-фактура на транспортное средство (при наличии)' ],
+s13_ts_u_fizlica: [ 'договор покупки транспортного средства у физического лица (не предпринимателя)' ],
+s13_ts_podarok_nasledstvo: [ 'свидетельство о праве на наследство, завещание или договор дарения транспортного средства', 'документы о приобретении транспортного средства дарителем или наследодателем' + D_POKUPKI ],
+s13_ts_oplata_v_den: [ D_TS_OPLATA ],
+s13_ts_oplata_otlichaetsya: [ { d: D_TS_OPLATA, p: 'Возможно, дата начала или прекращения права собственности будет отличаться от даты, которая числится в базе данных налоговой.' } ],
+s13_dohod_250_dvizhimoe: [],
+s13_podarok_nedvizhimost: [ 'кадастровая стоимость полученной в подарок недвижимости' ],
+
+/* --- Страница 14 --- */
+s14_zhiloe_vtorichka: [ 'договор покупки или мены (при приобретении) проданной квартиры, комнаты, жилого дома или участка' ],
+s14_zhiloe_postroen: [ 'выписка из ЕГРН на построенный проданный жилой дом', 'документы о расходах на строительство проданного жилого дома (чеки, квитанции, товарные чеки, платёжные поручения, накладные, акты, счета-фактуры, договоры)' ],
+s14_zhiloe_ddu: [ 'выписка из ЕГРН на проданный построенный объект (квартиру или комнату)', 'акт передачи проданного построенного объекта (квартиры или комнаты)', 'договор участия в долевом строительстве (инвестирования или подобный) на проданный объект (квартиру или комнату)' ],
+s14_zhiloe_ustupka: [ 'выписка из ЕГРН на проданный построенный объект (квартиру или комнату)', 'акт передачи проданного построенного объекта (квартиры или комнаты)', 'договор участия в долевом строительстве (инвестирования или подобный) на проданный объект (квартиру или комнату)', 'договор уступки права требования проданного объекта (квартиры или комнаты)' ],
+s14_sadovy_vtorichka: [ 'выписка из ЕГРН на проданный садовый дом', 'договор покупки или мены проданного садового дома' ],
+s14_sadovy_postroen: [ 'выписка из ЕГРН на построенный проданный садовый дом', 'документы о расходах на строительство проданного садового дома (чеки, квитанции, товарные чеки, платёжные поручения, накладные, акты, счета-фактуры, договоры)' ],
+s14_drugaya_vtorichka: [ 'выписка из ЕГРН на проданную недвижимость (НЕ жилой или садовый дом, НЕ квартира, НЕ комната, НЕ участок)', 'договор покупки или мены (при приобретении) проданной недвижимости (НЕ жилого или садового дома, НЕ квартиры, НЕ комнаты, НЕ участка)' ],
+s14_drugaya_postroen: [ 'выписка из ЕГРН на проданную недвижимость (НЕ жилой или садовый дом, НЕ квартира, НЕ комната, НЕ участок)', 'документы о расходах на строительство проданной недвижимости (НЕ жилого или садового дома, НЕ квартиры, НЕ комнаты, НЕ участка): чеки, квитанции, товарные чеки, платёжные поручения, накладные, акты, счета-фактуры, договоры' ],
+s14_drugaya_ddu: [ 'выписка из ЕГРН на проданную построенную недвижимость (НЕ жилой или садовый дом, НЕ квартиру, НЕ комнату, НЕ участок)', 'акт передачи проданной построенной недвижимости (НЕ жилого или садового дома, НЕ квартиры, НЕ комнаты, НЕ участка)', 'договор участия в долевом строительстве (инвестирования или подобный) на проданную построенную недвижимость (НЕ жилой или садовый дом, НЕ квартиру, НЕ комнату, НЕ участок)' ],
+s14_drugaya_ustupka: [ 'выписка из ЕГРН на проданную построенную недвижимость (НЕ жилой или садовый дом, НЕ квартиру, НЕ комнату, НЕ участок)', 'акт передачи проданной построенной недвижимости (НЕ жилого или садового дома, НЕ квартиры, НЕ комнаты, НЕ участка)', 'договор участия в долевом строительстве (инвестирования или подобный) на проданную построенную недвижимость (НЕ жилой или садовый дом, НЕ квартиру, НЕ комнату, НЕ участок)', 'договор уступки права требования проданной построенной недвижимости (НЕ жилого или садового дома, НЕ квартиры, НЕ комнаты, НЕ участка)' ],
+s14_kredit_rashody: [ 'кредитный договор (договор займа) на проданное имущество или имущественные права', 'справка об уплаченных процентах по кредиту (займу) на проданное имущество или имущественные права' ],
+
+/* --- Страница 15 --- */
+s15_ip_rashody: [ 'письменный расчёт суммы имущественного налогового вычета предпринимателя' ],
+s15_brak_rashody: [ D_BRAK, 'заявление о распределении имущественного вычета при продаже имущества' ],
+s15_brak_dohody: [ D_BRAK, 'заявление о распределении доходов (заверенное у нотариуса)' ],
+s15_pasport: [ D_PASPORT ],
+s15_nal: [ { d: 'расписка, что продавец имущества получил от вас деньги (за проданное вами имущество, когда вы его приобретали)', p: P_RASPISKA } ],
+s15_beznal: [ 'платёжное поручение (от вас продавцу имущества) за проданное вами имущество, когда вы его приобретали' ],
+s15_gos_fond: [ 'платёжное поручение (выписка или справка) о перечислении субсидии продавцу имущества (за проданное вами имущество, когда вы его приобретали)' ],
+s15_akkreditiv: [ 'заявление или договор на открытие аккредитива плюс платёжное поручение или документ с названием «аккредитив» — должно быть явно видно, что деньги перечислены от вас продавцу имущества (за проданное вами имущество, когда вы его приобретали)' ],
+s15_posrednik: [ 'договор поручения с посредником (в том числе с зависимой организацией банка) на перечисление ваших денег продавцу — для проданного вами имущества, когда вы его приобретали', 'платёжное поручение, что посредник перечислил деньги продавцу (за проданное вами имущество, когда вы его приобретали)' ],
+s15_eskrou: [ 'договор на открытие счёта эскроу (для проданного вами имущества, когда вы его приобретали)', 'платёжное поручение (чек, квитанция), что вы внесли деньги на счёт эскроу (за проданное вами имущество, когда вы его приобретали)' ]
+
+};
+
+/* ══════════════════════════════════════════════════════════════════════
+   РАЗДЕЛ 3. МАРШРУТ И НАВИГАЦИЯ
+   ══════════════════════════════════════════════════════════════════════ */
+var tekushchaya = 'start';
+var istoriya = [];
+
+function marshrut() {
+  var spisok = ['page1'];
+  if (document.getElementById('imu').checked) {
+    spisok.push('page2','page3','page4','page5','page6');
+  }
+  if (document.getElementById('soc').checked) {
+    spisok.push('page7');
+    if (document.getElementById('za_rodnyh').checked) spisok.push('page8');
+    if (nuzhnaPage9()) spisok.push('page9');
+    if (!document.getElementById('imu').checked) spisok.push('page10');
+  }
+  if (document.getElementById('pro').checked) {
+    spisok.push('page12');
+    if (nuzhnaPage13()) {
+      spisok.push('page13','page14','page15');
+    } else if (nuzhnaPage14()) {
+      spisok.push('page14','page15');
+    } else if (document.getElementById('doh_vyigrysh').checked || document.getElementById('doh_izyatie').checked) {
+      spisok.push('page15');
+    }
+  }
+  spisok.push('itog');
+  return spisok;
+}
+
+function pokazat(id) {
+  var vse = document.querySelectorAll('.page');
+  for (var i = 0; i < vse.length; i++) vse[i].hidden = true;
+  document.getElementById(id).hidden = false;
+  tekushchaya = id;
+  if (id === 'itog') stroitItog();
+  syncOptions();
+  obnovitShapku();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function pereyti(id) { istoriya.push(tekushchaya); pokazat(id); }
+function nachat() { pereyti('page1'); }
+function nazad() { if (istoriya.length === 0) return; pokazat(istoriya.pop()); }
+function zanovo() { location.reload(); }
+function konsultaciya() { pereyti('kontakty'); }
+
+function obnovitShapku() {
+  var marsh = marshrut();
+  var nomer = marsh.indexOf(tekushchaya);
+  var procent = 0, podp = 'Начало';
+  if (tekushchaya === 'start') { procent = 0; podp = 'Начало'; }
+  else if (tekushchaya === 'itog') { procent = 100; podp = 'Готово'; }
+  else if (tekushchaya === 'kontakty') { procent = posledniyProcent; podp = 'Консультация'; }
+  else if (nomer >= 0) {
+    procent = Math.round(nomer / (marsh.length - 1) * 100);
+    podp = 'Шаг ' + (nomer + 1) + ' из ' + marsh.length;
+    posledniyProcent = procent;
+  }
+  document.getElementById('pbar').style.width = procent + '%';
+  document.getElementById('stepLabel').textContent = podp;
+}
+var posledniyProcent = 0;
+
+/* ══════════════════════════════════════════════════════════════════════
+   РАЗДЕЛ 4. ПРОВЕРКИ И УСЛОВНОЕ ПОКАЗАНИЕ БЛОКОВ
+   ══════════════════════════════════════════════════════════════════════ */
+function otmecheno(id) {
+  return document.querySelectorAll('#' + id + ' input:checked').length > 0;
+}
+function sbrositGrupu(id) {
+  var spisok = document.querySelectorAll('#' + id + ' input');
+  for (var i = 0; i < spisok.length; i++) spisok[i].checked = false;
+}
+function sbrositVseKromePervoy() {
+  for (var i = 2; i <= 15; i++) {
+    if (document.getElementById('page' + i)) sbrositGrupu('page' + i);
+  }
+  kredit();
+  proveritRodnyh();
+  proveritVychetZhiloe();
+  proveritDvizhimoe();
+}
+function kontrolPervoy(gal) { if (!gal.checked) sbrositVseKromePervoy(); }
+
+function proveritPervye() {
+  var mozhno = document.getElementById('prots').checked && document.getElementById('ranee').checked;
+  document.getElementById('vpervye').hidden = !mozhno;
+  if (!mozhno) document.getElementById('procenty_vpervye').checked = false;
+}
+
+function proveritSubsidii() {
+  var estKredit = document.getElementById('kredit').checked;
+  var ranee = document.getElementById('ranee').checked;
+  document.getElementById('blok_bank_tek').hidden = !estKredit;
+  if (!estKredit) document.getElementById('sub_bank_tek').checked = false;
+  var bankPred = estKredit && ranee;
+  document.getElementById('blok_bank_pred').hidden = !bankPred;
+  if (!bankPred) document.getElementById('sub_bank_pred').checked = false;
+  document.getElementById('blok_prod_pred').hidden = !ranee;
+  if (!ranee) document.getElementById('sub_prod_pred').checked = false;
+}
+
+function proveritOplatu() {
+  var ddu = document.getElementById('str_ddu').checked;
+  document.getElementById('blok_eskrou').hidden = !ddu;
+  if (!ddu) document.getElementById('eskrou').checked = false;
+  var gos = document.getElementById('sub_prod_tek').checked
+         || document.getElementById('sub_prod_pred').checked
+         || document.getElementById('nis').checked;
+  document.getElementById('blok_gos_fond').hidden = !gos;
+  if (!gos) document.getElementById('gos_fond').checked = false;
+}
+
+function kredit() {
+  var estProcenty = document.getElementById('prots').checked;
+  var pole = document.getElementById('kredit');
+  if (estProcenty) { pole.checked = true; pole.disabled = true; }
+  else { pole.disabled = false; }
+}
+
+function proveritRodnyh() {
+  var estRashody = otmecheno('soc_rashody');
+  var pole = document.getElementById('za_rodnyh');
+  pole.disabled = !estRashody;
+  if (!estRashody) pole.checked = false;
+}
+
+function proveritPoluchateley() {
+  var svyaz = [
+    ['obuch_ochno','grp_ochno'], ['medic_uslugi','grp_med'], ['fizkultura','grp_fiz'],
+    ['strah_zhizni','grp_zhizn'], ['dms','grp_dms'], ['lekarstva','grp_lekar'],
+    ['pds','grp_pds'], ['pens_strah','grp_pensstr']
+  ];
+  for (var i = 0; i < svyaz.length; i++) {
+    var vklyucheno = document.getElementById(svyaz[i][0]).checked;
+    document.getElementById(svyaz[i][1]).hidden = !vklyucheno;
+    if (!vklyucheno) sbrositGrupu(svyaz[i][1]);
+  }
+}
+
+function proveritPage8() {
+  var gruppi = [
+    ['grp_ochno','Очное обучение'], ['grp_med','Медицинские услуги'],
+    ['grp_fiz','Физкультурно-оздоровительные услуги'], ['grp_zhizn','Страхование жизни'],
+    ['grp_dms','Медицинское страхование'], ['grp_lekar','Покупка медицинских препаратов'],
+    ['grp_pds','Пенсионное обеспечение (долгосрочные сбережения)'], ['grp_pensstr','Пенсионное страхование']
+  ];
+  for (var i = 0; i < gruppi.length; i++) {
+    if (!document.getElementById(gruppi[i][0]).hidden && !otmecheno(gruppi[i][0])) {
+      preduprezhdenie('Отметьте хотя бы одного получателя в блоке «' + gruppi[i][1] + '». Если подходящего получателя нет, нажмите «Назад» и измените выбор расходов.');
+      return false;
+    }
+  }
+  return true;
+}
+
+function nuzhnaPage9() {
+  return document.getElementById('obuch_ochno').checked
+      || document.getElementById('obuch_neochno').checked
+      || document.getElementById('lekarstva').checked
+      || document.getElementById('blagotvor').checked
+      || document.getElementById('pds').checked
+      || document.getElementById('pens_strah').checked
+      || document.getElementById('iis_do2023').checked
+      || document.getElementById('cennye_bumagi').checked
+      || document.getElementById('std_deti').checked
+      || document.getElementById('std_podopechnye').checked;
+}
+
+function proveritPage9() {
+  var svyaz = [
+    ['blok_obuch', document.getElementById('obuch_ochno').checked || document.getElementById('obuch_neochno').checked],
+    ['blok_lekar', document.getElementById('lekarstva').checked],
+    ['blok_blago', document.getElementById('blagotvor').checked],
+    ['blok_pds', document.getElementById('pds').checked],
+    ['blok_pensstr', document.getElementById('pens_strah').checked],
+    ['blok_iis_do2023', document.getElementById('iis_do2023').checked],
+    ['blok_broker', document.getElementById('cennye_bumagi').checked],
+    ['blok_std_deti', document.getElementById('std_deti').checked || document.getElementById('std_podopechnye').checked]
+  ];
+  for (var i = 0; i < svyaz.length; i++) {
+    document.getElementById(svyaz[i][0]).hidden = !svyaz[i][1];
+    if (!svyaz[i][1]) sbrositGrupu(svyaz[i][0]);
+  }
+
+  /* ── ПРАВКА 1 ──────────────────────────────────────────────────────
+     Внутри блока стандартных вычетов два подблока зависят от РАЗНЫХ
+     галочек страницы 7: дети — от std_deti, подопечные — от std_podopechnye.
+     Скрытый подблок обязательно очищается, иначе снятая на странице 7
+     галочка оставила бы «висячие» документы в итоговом списке.        */
+  var deti  = document.getElementById('std_deti').checked;
+  var podop = document.getElementById('std_podopechnye').checked;
+  document.getElementById('blok9_deti').hidden = !deti;
+  if (!deti) sbrositGrupu('blok9_deti');
+  document.getElementById('blok9_podop').hidden = !podop;
+  if (!podop) sbrositGrupu('blok9_podop');
+}
+
+function proveritOtvetyPage9() {
+  var gruppi = [
+    ['blok_obuch','Обучение было'], ['blok_lekar','Покупка препаратов была'],
+    ['blok_pds','Взносы по пенсионному обеспечению (долгосрочные сбережения)'],
+    ['blok_pensstr','Взносы по пенсионному страхованию'],
+    ['blok_broker','Вычет по брокерскому (НЕ инвестиционному) счёту']
+  ];
+  for (var i = 0; i < gruppi.length; i++) {
+    if (!document.getElementById(gruppi[i][0]).hidden && !otmecheno(gruppi[i][0])) {
+      preduprezhdenie('Отметьте хотя бы один вариант в блоке «' + gruppi[i][1] + '». Если подходящего варианта нет, нажмите «Назад» и измените выбор вычетов.');
+      return false;
+    }
+  }
+  return true;
+}
+
+function nuzhnaPage13() {
+  return document.getElementById('doh_zhiloe').checked
+      || document.getElementById('doh_sadovy').checked
+      || document.getElementById('doh_drugaya_nedv').checked
+      || document.getElementById('doh_transport').checked
+      || document.getElementById('doh_drugoe').checked
+      || document.getElementById('doh_podarok').checked;
+}
+function nuzhnaPage14() {
+  return document.getElementById('doh_cennye').checked || document.getElementById('doh_ustupka').checked;
+}
+
+function proveritPage13() {
+  var sadovy    = document.getElementById('doh_sadovy').checked;
+  var zhiloe    = document.getElementById('doh_zhiloe').checked;
+  var drugaya   = document.getElementById('doh_drugaya_nedv').checked;
+  var transport = document.getElementById('doh_transport').checked;
+  var drugoe    = document.getElementById('doh_drugoe').checked;
+  var podarok   = document.getElementById('doh_podarok').checked;
+
+  document.getElementById('blok13_sadovy').hidden = !sadovy;
+  if (!sadovy) sbrositGrupu('blok13_sadovy');
+
+  document.getElementById('blok13_zhiloe').hidden = !zhiloe;
+  if (!zhiloe) sbrositGrupu('blok13_zhiloe');
+  proveritVychetZhiloe();
+
+  document.getElementById('blok13_zhiloe_sadovy').hidden = !(zhiloe || sadovy);
+  if (!(zhiloe || sadovy)) sbrositGrupu('blok13_zhiloe_sadovy');
+
+  document.getElementById('blok13_drugaya_nedv').hidden = !drugaya;
+  if (!drugaya) sbrositGrupu('blok13_drugaya_nedv');
+
+  document.getElementById('blok13_transport').hidden = !transport;
+  if (!transport) sbrositGrupu('blok13_transport');
+  proveritDvizhimoe();
+
+  document.getElementById('blok13_dvizhimoe').hidden = !(transport || drugoe);
+  if (!(transport || drugoe)) sbrositGrupu('blok13_dvizhimoe');
+  proveritDvizhimoe();
+
+  document.getElementById('blok13_podarok').hidden = !podarok;
+  if (!podarok) sbrositGrupu('blok13_podarok');
+}
+
+function proveritVychetZhiloe() {
+  var imu = document.getElementById('imu').checked;
+  var blok = document.getElementById('blok13_zhiloe_vychet');
+  var gal  = document.getElementById('s13_zhiloe_vychet');
+  blok.hidden = !imu;
+  if (!imu) gal.checked = false;
+  var vychet = gal.checked;
+  var nasl = document.getElementById('s13_zhiloe_nasledstvo');
+  var pod  = document.getElementById('s13_zhiloe_podarok');
+  nasl.disabled = vychet;
+  pod.disabled  = vychet;
+  if (vychet) { nasl.checked = false; pod.checked = false; }
+}
+
+/* ── ПРАВКА 2 ──────────────────────────────────────────────────────────
+   Галочка «доход от ТС и движимого меньше 250 тысяч» блокирует и снимает
+   пять галочек о том, как транспорт приобретался и оплачивался: при вычете
+   в 250 тысяч подтверждающие расходы документы не нужны.
+   Функция вызывается и по клику, и из proveritPage13 / сброса — чтобы
+   блокировки не «залипали», когда блок скрыт или галочка снята.        */
+function proveritDvizhimoe() {
+  var limit = document.getElementById('s13_dohod_250_dvizhimoe').checked;
+  var ids = ['s13_ts_u_organizacii','s13_ts_u_fizlica','s13_ts_podarok_nasledstvo',
+             's13_ts_oplata_v_den','s13_ts_oplata_otlichaetsya'];
+  for (var i = 0; i < ids.length; i++) {
+    var g = document.getElementById(ids[i]);
+    g.disabled = limit;
+    if (limit) g.checked = false;
+  }
+}
+
+function proveritOtvetyPage13() {
+  var prostoy = 'Укажите, по какому договору было продано имущество. При отсутствии нужного варианта можно обратиться за консультацией.';
+
+  if (!document.getElementById('blok13_sadovy').hidden) {
+    if (!(document.getElementById('s13_sadovy_mena').checked || document.getElementById('s13_sadovy_prodazha').checked)) {
+      preduprezhdenie(prostoy); return false;
+    }
+  }
+  if (!document.getElementById('blok13_zhiloe').hidden) {
+    if (!(document.getElementById('s13_zhiloe_mena').checked || document.getElementById('s13_zhiloe_prodazha').checked)) {
+      preduprezhdenie(prostoy); return false;
+    }
+  }
+  if (!document.getElementById('blok13_drugaya_nedv').hidden) {
+    if (!(document.getElementById('s13_drugaya_mena').checked || document.getElementById('s13_drugaya_prodazha').checked)) {
+      preduprezhdenie(prostoy); return false;
+    }
+  }
+  if (!document.getElementById('blok13_transport').hidden) {
+    var tsDogo = document.getElementById('s13_ts_prodazha').checked
+              || document.getElementById('s13_ts_mena').checked
+              || document.getElementById('s13_ts_komissiya').checked;
+    var tsPriobreteno = document.getElementById('s13_ts_u_organizacii').checked
+                     || document.getElementById('s13_ts_u_fizlica').checked
+                     || document.getElementById('s13_ts_podarok_nasledstvo').checked;
+    var tsOplata = document.getElementById('s13_ts_oplata_v_den').checked
+                || document.getElementById('s13_ts_oplata_otlichaetsya').checked;
+
+    /* Если отмечен лимит 250 тысяч, группы «как приобретено» и «как оплачено»
+       заблокированы правкой 2 — требовать их нельзя, иначе переход невозможен. */
+    var limit = document.getElementById('s13_dohod_250_dvizhimoe').checked;
+    if (!tsDogo || (!limit && (!tsPriobreteno || !tsOplata))) {
+      preduprezhdenie(limit
+        ? 'Укажите, по какому договору было продано транспортное средство. При отсутствии нужного варианта можно обратиться за консультацией.'
+        : 'Укажите, по какому договору было продано, как было оплачено и как приобретено транспортное средство. При отсутствии нужного варианта можно обратиться за консультацией.');
+      return false;
+    }
+  }
+  return true;
+}
+
+function proveritPage14() {
+  var vychet  = document.getElementById('s13_zhiloe_vychet').checked;
+  var million = document.getElementById('s13_dohod_million').checked;
+  var lim250  = document.getElementById('s13_dohod_250_nedv').checked;
+
+  document.getElementById('blok14_vychet_note').hidden = !vychet;
+
+  var zhiloe = document.getElementById('doh_zhiloe').checked && !vychet && !million;
+  document.getElementById('blok14_zhiloe').hidden = !zhiloe;
+  if (!zhiloe) sbrositGrupu('blok14_zhiloe');
+
+  var sadovy = document.getElementById('doh_sadovy').checked && !million;
+  document.getElementById('blok14_sadovy').hidden = !sadovy;
+  if (!sadovy) sbrositGrupu('blok14_sadovy');
+
+  var drugaya = document.getElementById('doh_drugaya_nedv').checked && !lim250;
+  document.getElementById('blok14_drugaya').hidden = !drugaya;
+  if (!drugaya) sbrositGrupu('blok14_drugaya');
+}
+
+function proveritOtvetyPage14() {
+  var gruppi = ['blok14_zhiloe','blok14_sadovy','blok14_drugaya'];
+  for (var i = 0; i < gruppi.length; i++) {
+    if (!document.getElementById(gruppi[i]).hidden && !otmecheno(gruppi[i])) {
+      preduprezhdenie('Если отсутствует необходимый способ приобретения, можно обратиться за консультацией.');
+      return false;
+    }
+  }
+  return true;
+}
+
+function proveritPage15() {
+  var zhiloe    = document.getElementById('doh_zhiloe').checked;
+  var sadovy    = document.getElementById('doh_sadovy').checked;
+  var drugaya   = document.getElementById('doh_drugaya_nedv').checked;
+  var transport = document.getElementById('doh_transport').checked;
+  var drugoe    = document.getElementById('doh_drugoe').checked;
+  var cennye    = document.getElementById('doh_cennye').checked;
+  var ustupka   = document.getElementById('doh_ustupka').checked;
+  var million = document.getElementById('s13_dohod_million').checked;
+  var lim250  = document.getElementById('s13_dohod_250_nedv').checked;
+  var vychet  = document.getElementById('s13_zhiloe_vychet').checked;
+
+  var ipRashody = zhiloe || sadovy || transport;
+  document.getElementById('blok15_ip_rashody').hidden = !ipRashody;
+  if (!ipRashody) document.getElementById('s15_ip_rashody').checked = false;
+
+  var brakRashody = transport || drugoe || cennye || ustupka
+                 || ((zhiloe || sadovy) && !million)
+                 || (drugaya && !lim250);
+  document.getElementById('blok15_brak_rashody').hidden = !brakRashody;
+  if (!brakRashody) document.getElementById('s15_brak_rashody').checked = false;
+
+  var brakDohody = zhiloe || sadovy || drugaya || transport || drugoe || cennye || ustupka;
+  document.getElementById('blok15_brak_dohody').hidden = !brakDohody;
+  if (!brakDohody) document.getElementById('s15_brak_dohody').checked = false;
+
+  var pasport = !document.getElementById('imu').checked && !document.getElementById('soc').checked;
+  document.getElementById('blok15_pasport').hidden = !pasport;
+  if (!pasport) document.getElementById('s15_pasport').checked = false;
+
+  var oplata = drugoe || cennye || ustupka
+            || (zhiloe && !vychet && !million)
+            || (sadovy && !million)
+            || (drugaya && !lim250);
+  document.getElementById('blok15_oplata').hidden = !oplata;
+  if (!oplata) sbrositGrupu('blok15_oplata');
+
+  var eskrou = oplata && (document.getElementById('s14_zhiloe_ddu').checked
+                       || document.getElementById('s14_drugaya_ddu').checked
+                       || ustupka);
+  document.getElementById('blok15_eskrou').hidden = !eskrou;
+  if (!eskrou) document.getElementById('s15_eskrou').checked = false;
+}
+
+function proveritOtvetyPage15() {
+  if (!document.getElementById('blok15_oplata').hidden && !otmecheno('blok15_oplata')) {
+    preduprezhdenie('Выберите один из способов оплаты или обратитесь за консультацией.');
+    return false;
+  }
+  return true;
+}
+
+function dalee() {
+  if (tekushchaya === 'page1' && !otmecheno('page1')) {
+    preduprezhdenie('Не выбран ни один из вариантов. Можно обратиться за консультацией или начать заново.'); return;
+  }
+  if (tekushchaya === 'page2') {
+    if (!otmecheno('obekty')) {
+      preduprezhdenie('Не выбран ни один из вариантов. Можно обратиться за консультацией или начать заново.'); return;
+    }
+    proveritPervye();
+  }
+  if (tekushchaya === 'page3') proveritSubsidii();
+  if (tekushchaya === 'page4') proveritOplatu();
+  if (tekushchaya === 'page5' && !otmecheno('page5')) {
+    preduprezhdenie('Не выбран ни один из вариантов. Можно обратиться за консультацией или начать заново.'); return;
+  }
+  if (tekushchaya === 'page7' && !otmecheno('page7')) {
+    preduprezhdenie('Не выбран ни один из вариантов. Можно обратиться за консультацией или начать заново.'); return;
+  }
+  if (tekushchaya === 'page7') proveritPoluchateley();
+  if (tekushchaya === 'page8' && !proveritPage8()) return;
+  if (tekushchaya === 'page7' || tekushchaya === 'page8') proveritPage9();
+  if (tekushchaya === 'page9' && !proveritOtvetyPage9()) return;
+  if (tekushchaya === 'page12') { proveritPage13(); proveritPage14(); proveritPage15(); }
+  if (tekushchaya === 'page13' && !proveritOtvetyPage13()) return;
+  if (tekushchaya === 'page13') { proveritPage14(); proveritPage15(); }
+  if (tekushchaya === 'page14' && !proveritOtvetyPage14()) return;
+  if (tekushchaya === 'page14') proveritPage15();
+  if (tekushchaya === 'page15' && !proveritOtvetyPage15()) return;
+
+  var spisok = marshrut();
+  var nomer = spisok.indexOf(tekushchaya);
+  if (nomer === -1 || nomer === spisok.length - 1) return;
+  pereyti(spisok[nomer + 1]);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   РАЗДЕЛ 5. ИТОГОВЫЙ СПИСОК
+   ══════════════════════════════════════════════════════════════════════ */
+function norm(t) { return String(t).replace(/\s+/g, ' ').trim(); }
+
+/* Галочка учитывается, только если её страница входит в текущий маршрут.
+   Это отсекает «залипшие» отметки на страницах, выпавших из маршрута. */
+function uchteno(id, marsh) {
+  var g = document.getElementById(id);
+  if (!g || !g.checked) return false;
+  var str = g.parentNode;
+  while (str && str !== document.body) {
+    if (str.classList && str.classList.contains('page')) break;
+    str = str.parentNode;
+  }
+  return !str || str === document.body || marsh.indexOf(str.id) !== -1;
+}
+
+function sobratZapisi() {
+  var marsh = marshrut(), zapisi = [], id;
+  for (id in DOKUMENTY) {
+    if (!DOKUMENTY.hasOwnProperty(id)) continue;
+    if (!uchteno(id, marsh)) continue;
+    for (var i = 0; i < DOKUMENTY[id].length; i++) zapisi.push(DOKUMENTY[id][i]);
+  }
+  /* Особое условие 1: ИНН нужен только для отчёта о доходах без вычетов */
+  if (uchteno('pro', marsh) && !uchteno('imu', marsh) && !uchteno('soc', marsh)) {
+    zapisi.push('ИНН (не копия документа, только номер)');
+  }
+  /* Особое условие 2: ИИС до 2023 — набор зависит от вида вычета */
+  if (uchteno('iis_do2023', marsh)) {
+    if (uchteno('iis_do2023_vznosy', marsh)) zapisi.push(D_VZNOS_IIS);
+    else { zapisi.push(D_2NDFL_BRK); zapisi.push(D_OTCHET); }
+  }
+  return zapisi;
+}
+
+function sobratDokumenty() {
+  var zapisi = sobratZapisi(), poryadok = [], noty = {};
+  for (var i = 0; i < zapisi.length; i++) {
+    var z = zapisi[i];
+    var tekst = norm(typeof z === 'string' ? z : z.d);
+    var nota  = typeof z === 'string' ? '' : norm(z.p || '');
+    if (!tekst) continue;
+    if (poryadok.indexOf(tekst) === -1) { poryadok.push(tekst); noty[tekst] = []; }
+    if (nota && noty[tekst].indexOf(nota) === -1) noty[tekst].push(nota);
+  }
+  var itog = [];
+  for (var k = 0; k < poryadok.length; k++) itog.push({ d: poryadok[k], p: noty[poryadok[k]] });
+  return itog;
+}
+
+function stroitItog() {
+  var spisok = sobratDokumenty();
+  var ol = document.getElementById('itog_spisok');
+  ol.innerHTML = '';
+  for (var i = 0; i < spisok.length; i++) {
+    var li = document.createElement('li');
+    var span = document.createElement('span');
+    span.className = 'dt';
+    span.textContent = spisok[i].d;
+    li.appendChild(span);
+    for (var j = 0; j < spisok[i].p.length; j++) {
+      var det = document.createElement('details');
+      var sum = document.createElement('summary');
+      sum.textContent = 'Примечание';
+      det.appendChild(sum);
+      var p = document.createElement('p');
+      p.textContent = spisok[i].p[j];
+      det.appendChild(p);
+      li.appendChild(det);
+    }
+    ol.appendChild(li);
+  }
+  document.getElementById('itog_kol').textContent = spisok.length;
+  document.getElementById('itog_pusto').hidden = spisok.length > 0;
+  document.getElementById('itog_rezultat').hidden = spisok.length === 0;
+  stroitOtchet();
+}
+
+function td(tr, tekst, klass) {
+  var y = document.createElement('td');
+  y.textContent = tekst;
+  if (klass) y.className = klass;
+  tr.appendChild(y);
+}
+
+function stroitOtchet() {
+  var marsh = marshrut();
+  var telo = document.getElementById('itog_otchet_telo');
+  telo.innerHTML = '';
+  var vsego = 0, sluzhebnyh = 0;
+  for (var id in DOKUMENTY) {
+    if (!DOKUMENTY.hasOwnProperty(id)) continue;
+    if (!uchteno(id, marsh)) continue;
+    vsego++;
+    var kol = DOKUMENTY[id].length;
+    if (id === 'iis_do2023_vznosy') {
+      kol = uchteno('iis_do2023', marsh) ? (uchteno('iis_do2023_vznosy', marsh) ? 1 : 2) : 0;
+    }
+    if (kol === 0) sluzhebnyh++;
+    var g = document.getElementById(id);
+    var metka = g.parentNode;
+    while (metka && metka.tagName !== 'LABEL') metka = metka.parentNode;
+    var str = g.parentNode;
+    while (str && str !== document.body && !(str.classList && str.classList.contains('page'))) str = str.parentNode;
+    var tr = document.createElement('tr');
+    td(tr, str && str.id ? str.id : '—');
+    td(tr, id);
+    td(tr, metka ? norm(metka.textContent) : '');
+    td(tr, kol === 0 ? 'служебная' : String(kol), kol === 0 ? 'sl' : '');
+    telo.appendChild(tr);
+  }
+  document.getElementById('itog_otchet_itog').textContent =
+    'Отмечено галочек: ' + vsego + '. Из них служебных, не дающих документов: ' + sluzhebnyh + '.';
+}
+
+function tekstSpiska() {
+  var spisok = sobratDokumenty();
+  var stroki = ['СПИСОК ДОКУМЕНТОВ ДЛЯ ДЕКЛАРАЦИИ 3-НДФЛ', '13 копеек · Андрей Дементьев', ''];
+  for (var i = 0; i < spisok.length; i++) {
+    stroki.push((i + 1) + '. ' + spisok[i].d);
+    for (var j = 0; j < spisok[i].p.length; j++) stroki.push('     Примечание: ' + spisok[i].p[j]);
+  }
+  return stroki.join('\r\n');
+}
+
+function kopirovatZapasno(tekst) {
+  var pole = document.createElement('textarea');
+  pole.value = tekst;
+  pole.style.position = 'fixed';
+  pole.style.top = '-1000px';
+  document.body.appendChild(pole);
+  pole.select();
+  var ok = false;
+  try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+  document.body.removeChild(pole);
+  soobshchenie(ok ? 'Список скопирован' : 'Не удалось скопировать — выделите список вручную');
+}
+
+function kopirovatSpisok() {
+  if (sobratDokumenty().length === 0) { soobshchenie('Список пока пуст'); return; }
+  var tekst = tekstSpiska();
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(tekst).then(
+      function () { soobshchenie('Список скопирован'); },
+      function () { kopirovatZapasno(tekst); }
+    );
+  } else kopirovatZapasno(tekst);
+}
+
+function skachatSpisok() {
+  if (sobratDokumenty().length === 0) { soobshchenie('Список пока пуст'); return; }
+  var blob = new Blob(['\ufeff' + tekstSpiska()], { type: 'text/plain;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'Список документов 3-НДФЛ.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+  soobshchenie('Файл сохранён');
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   РАЗДЕЛ 6. ОФОРМЛЕНИЕ: СОСТОЯНИЯ ГАЛОЧЕК, ПРЕДУПРЕЖДЕНИЯ, УВЕДОМЛЕНИЯ
+   ══════════════════════════════════════════════════════════════════════ */
+function syncOptions() {
+  var spisok = document.querySelectorAll('.opt');
+  for (var i = 0; i < spisok.length; i++) {
+    var input = spisok[i].querySelector('input');
+    if (!input) continue;
+    if (input.checked) spisok[i].classList.add('is-on'); else spisok[i].classList.remove('is-on');
+    if (input.disabled) spisok[i].classList.add('is-off'); else spisok[i].classList.remove('is-off');
+  }
+}
+
+function preduprezhdenie(tekst) {
+  document.getElementById('modalText').textContent = tekst;
+  document.getElementById('modal').classList.add('on');
+  document.getElementById('scrim').classList.add('on');
+}
+function zakrytPreduprezhdenie() {
+  document.getElementById('modal').classList.remove('on');
+  document.getElementById('scrim').classList.remove('on');
+}
+
+var toastTimer = null;
+function soobshchenie(m) {
+  document.getElementById('toastTxt').textContent = m;
+  var t = document.getElementById('toast');
+  t.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function () { t.classList.remove('on'); }, 2400);
+}
+
+document.addEventListener('change', function (e) {
+  if (e.target && e.target.type === 'checkbox') syncOptions();
+});
+document.addEventListener('click', function () { setTimeout(syncOptions, 0); });
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') zakrytPreduprezhdenie();
+});
+
+/* Стартовая отрисовка */
+syncOptions();
+obnovitShapku();
+</script>
+</body>
+</html>
+```
